@@ -416,7 +416,6 @@
       let theme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       ("dark" == theme ? (document.body.classList.add("theme-dark"), document.body.classList.remove("theme-light")) : (document.body.classList.add("theme-light"), document.body.classList.remove("theme-dark")), window.innerWidth < 480 ? document.body.classList.add("is-phone") : window.innerWidth < 768 ? document.body.classList.add("is-tablet") : window.innerWidth < 1024 ? document.body.classList.add("is-small-screen") : document.body.classList.add("is-large-screen"));
     </script>
-    <div class="parsed-feature-container" style="display: contents"><link itemprop="include" href="site-lib/html/custom-head-content-content.html" /></div>
     <div id="main">
       <div id="navbar"></div>
       <div id="main-horizontal">
@@ -435,10 +434,7 @@
                 </svg>
               </div>
             </div>
-            <div class="sidebar-content-wrapper">
-              <link itemprop="include" href="site-lib/html/file-tree-content.html" />
-              <div id="left-sidebar-content" class="leaf-content"></div>
-            </div>
+            <div class="sidebar-content-wrapper"><div id="left-sidebar-content" class="leaf-content"></div></div>
             <script defer="">
               let ls = document.querySelector("#left-sidebar");
               ls.classList.toggle("is-collapsed", window.innerWidth < 768);
@@ -447,702 +443,8 @@
           </div>
         </div>
         <div id="center-content" class="leaf">
-          <div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event is-readable-line-width allow-fold-headings allow-fold-lists show-indentation-guide show-properties" data-type="markdown">
+          <div class="obsidian-document markdown-preview-view markdown-rendered node-insert-event is-readable-line-width allow-fold-headings show-indentation-guide show-properties" data-type="markdown">
             <style id="MJX-CHTML-styles">
-              mjx-c.mjx-c3A::before {
-                padding: 0.43em 0.278em 0 0;
-                content: ":";
-              }
-              mjx-c.mjx-c1D43B.TEX-I::before {
-                padding: 0.683em 0.888em 0 0;
-                content: "H";
-              }
-              mjx-mtable {
-                display: inline-block;
-                text-align: center;
-                vertical-align: 0.25em;
-                position: relative;
-                box-sizing: border-box;
-                border-spacing: 0px;
-                border-collapse: collapse;
-              }
-              mjx-mstyle[size="s"] mjx-mtable {
-                vertical-align: 0.354em;
-              }
-              mjx-labels {
-                position: absolute;
-                left: 0;
-                top: 0;
-              }
-              mjx-table {
-                display: inline-block;
-                vertical-align: -0.5ex;
-                box-sizing: border-box;
-              }
-              mjx-table > mjx-itable {
-                vertical-align: middle;
-                text-align: left;
-                box-sizing: border-box;
-              }
-              mjx-labels > mjx-itable {
-                position: absolute;
-                top: 0;
-              }
-              mjx-mtable[justify="left"] {
-                text-align: left;
-              }
-              mjx-mtable[justify="right"] {
-                text-align: right;
-              }
-              mjx-mtable[justify="left"][side="left"] {
-                padding-right: 0 !important;
-              }
-              mjx-mtable[justify="left"][side="right"] {
-                padding-left: 0 !important;
-              }
-              mjx-mtable[justify="right"][side="left"] {
-                padding-right: 0 !important;
-              }
-              mjx-mtable[justify="right"][side="right"] {
-                padding-left: 0 !important;
-              }
-              mjx-mtable[align] {
-                vertical-align: baseline;
-              }
-              mjx-mtable[align="top"] > mjx-table {
-                vertical-align: top;
-              }
-              mjx-mtable[align="bottom"] > mjx-table {
-                vertical-align: bottom;
-              }
-              mjx-mtable[side="right"] mjx-labels {
-                min-width: 100%;
-              }
-              mjx-mtr {
-                display: table-row;
-                text-align: left;
-              }
-              mjx-mtr[rowalign="top"] > mjx-mtd {
-                vertical-align: top;
-              }
-              mjx-mtr[rowalign="center"] > mjx-mtd {
-                vertical-align: middle;
-              }
-              mjx-mtr[rowalign="bottom"] > mjx-mtd {
-                vertical-align: bottom;
-              }
-              mjx-mtr[rowalign="baseline"] > mjx-mtd {
-                vertical-align: baseline;
-              }
-              mjx-mtr[rowalign="axis"] > mjx-mtd {
-                vertical-align: 0.25em;
-              }
-              mjx-mtd {
-                display: table-cell;
-                text-align: center;
-                padding: 0.215em 0.4em;
-              }
-              mjx-mtd:first-child {
-                padding-left: 0;
-              }
-              mjx-mtd:last-child {
-                padding-right: 0;
-              }
-              mjx-mtable > * > mjx-itable > :first-child > mjx-mtd {
-                padding-top: 0;
-              }
-              mjx-mtable > * > mjx-itable > :last-child > mjx-mtd {
-                padding-bottom: 0;
-              }
-              mjx-tstrut {
-                display: inline-block;
-                height: 1em;
-                vertical-align: -0.25em;
-              }
-              mjx-labels[align="left"] > mjx-mtr > mjx-mtd {
-                text-align: left;
-              }
-              mjx-labels[align="right"] > mjx-mtr > mjx-mtd {
-                text-align: right;
-              }
-              mjx-mtd[extra] {
-                padding: 0;
-              }
-              mjx-mtd[rowalign="top"] {
-                vertical-align: top;
-              }
-              mjx-mtd[rowalign="center"] {
-                vertical-align: middle;
-              }
-              mjx-mtd[rowalign="bottom"] {
-                vertical-align: bottom;
-              }
-              mjx-mtd[rowalign="baseline"] {
-                vertical-align: baseline;
-              }
-              mjx-mtd[rowalign="axis"] {
-                vertical-align: 0.25em;
-              }
-              mjx-stretchy-v.mjx-c7B mjx-beg mjx-c::before {
-                content: "⎧";
-                padding: 0.899em 0.889em 0.01em 0;
-              }
-              mjx-stretchy-v.mjx-c7B mjx-ext mjx-c::before {
-                content: "⎪";
-                width: 0.889em;
-              }
-              mjx-stretchy-v.mjx-c7B mjx-end mjx-c::before {
-                content: "⎩";
-                padding: 0.01em 0.889em 0.899em 0;
-              }
-              mjx-stretchy-v.mjx-c7B mjx-mid mjx-c::before {
-                content: "⎨";
-                padding: 1.16em 0.889em 0.66em 0;
-              }
-              mjx-stretchy-v.mjx-c7B > mjx-mid {
-                margin-top: -0.91em;
-                margin-bottom: -0.91em;
-              }
-              mjx-stretchy-v.mjx-c7B > mjx-end {
-                margin-top: -0.909em;
-              }
-              mjx-stretchy-v.mjx-c7B > mjx-ext {
-                height: 50%;
-                border-top-width: 0.879em;
-                border-bottom-width: 0.879em;
-              }
-              mjx-c.mjx-c2265::before {
-                padding: 0.636em 0.778em 0.138em 0;
-                content: "≥";
-              }
-              mjx-c.mjx-c3F::before {
-                padding: 0.705em 0.472em 0 0;
-                content: "?";
-              }
-              mjx-c.mjx-c1D43A.TEX-I::before {
-                padding: 0.705em 0.786em 0.022em 0;
-                content: "G";
-              }
-              mjx-c.mjx-c7B.TEX-S3::before {
-                padding: 1.45em 0.75em 0.949em 0;
-                content: "{";
-              }
-              mjx-c.mjx-c66::before {
-                padding: 0.705em 0.372em 0 0;
-                content: "f";
-              }
-              mjx-c.mjx-c7B.TEX-S4::before {
-                padding: 1.75em 0.806em 1.249em 0;
-                content: "{";
-              }
-              mjx-c.mjx-c1D44F.TEX-I::before {
-                padding: 0.694em 0.429em 0.011em 0;
-                content: "b";
-              }
-              mjx-c.mjx-c1D446.TEX-I::before {
-                padding: 0.705em 0.645em 0.022em 0;
-                content: "S";
-              }
-              mjx-munderover {
-                display: inline-block;
-                text-align: left;
-              }
-              mjx-munderover:not([limits="false"]) {
-                padding-top: 0.1em;
-              }
-              mjx-munderover:not([limits="false"]) > * {
-                display: block;
-              }
-              mjx-c.mjx-c2211.TEX-S1::before {
-                padding: 0.75em 1.056em 0.25em 0;
-                content: "∑";
-              }
-              mjx-c.mjx-c1D457.TEX-I::before {
-                padding: 0.661em 0.412em 0.204em 0;
-                content: "j";
-              }
-              mjx-c.mjx-c2211.TEX-S2::before {
-                padding: 0.95em 1.444em 0.45em 0;
-                content: "∑";
-              }
-              mjx-c.mjx-c28.TEX-S1::before {
-                padding: 0.85em 0.458em 0.349em 0;
-                content: "(";
-              }
-              mjx-c.mjx-c29.TEX-S1::before {
-                padding: 0.85em 0.458em 0.349em 0;
-                content: ")";
-              }
-              mjx-c.mjx-c1D441.TEX-I::before {
-                padding: 0.683em 0.888em 0 0;
-                content: "N";
-              }
-              mjx-c.mjx-c1D437.TEX-I::before {
-                padding: 0.683em 0.828em 0 0;
-                content: "D";
-              }
-              mjx-c.mjx-c222B.TEX-S2::before {
-                padding: 1.36em 0.944em 0.862em 0;
-                content: "∫";
-              }
-              mjx-c.mjx-c221A.TEX-S3::before {
-                padding: 1.45em 1.02em 0.95em 0;
-                content: "√";
-              }
-              mjx-c.mjx-c27E8::before {
-                padding: 0.75em 0.389em 0.25em 0;
-                content: "⟨";
-              }
-              mjx-c.mjx-c27E9::before {
-                padding: 0.75em 0.389em 0.25em 0;
-                content: "⟩";
-              }
-              mjx-c.mjx-c221D::before {
-                padding: 0.442em 0.778em 0.011em 0;
-                content: "∝";
-              }
-              mjx-c.mjx-c1D44D.TEX-I::before {
-                padding: 0.683em 0.723em 0 0;
-                content: "Z";
-              }
-              mjx-c.mjx-c1D6E5.TEX-I::before {
-                padding: 0.716em 0.833em 0 0;
-                content: "Δ";
-              }
-              mjx-c.mjx-c223C::before {
-                padding: 0.367em 0.778em 0 0;
-                content: "∼";
-              }
-              mjx-c.mjx-c1D707.TEX-I::before {
-                padding: 0.442em 0.603em 0.216em 0;
-                content: "μ";
-              }
-              mjx-msqrt {
-                display: inline-block;
-                text-align: left;
-              }
-              mjx-root {
-                display: inline-block;
-                white-space: nowrap;
-              }
-              mjx-surd {
-                display: inline-block;
-                vertical-align: top;
-              }
-              mjx-sqrt {
-                display: inline-block;
-                padding-top: 0.07em;
-              }
-              mjx-sqrt > mjx-box {
-                border-top: 0.07em solid;
-              }
-              mjx-sqrt.mjx-tall > mjx-box {
-                padding-left: 0.3em;
-                margin-left: -0.3em;
-              }
-              mjx-c.mjx-c221A.TEX-S2::before {
-                padding: 1.15em 1.02em 0.65em 0;
-                content: "√";
-              }
-              mjx-c.mjx-c394::before {
-                padding: 0.716em 0.833em 0 0;
-                content: "Δ";
-              }
-              mjx-c.mjx-c1D453.TEX-I::before {
-                padding: 0.705em 0.55em 0.205em 0;
-                content: "f";
-              }
-              mjx-c.mjx-c28.TEX-S3::before {
-                padding: 1.45em 0.736em 0.949em 0;
-                content: "(";
-              }
-              mjx-c.mjx-c29.TEX-S3::before {
-                padding: 1.45em 0.736em 0.949em 0;
-                content: ")";
-              }
-              mjx-c.mjx-c70::before {
-                padding: 0.442em 0.556em 0.194em 0;
-                content: "p";
-              }
-              mjx-c.mjx-c3A6::before {
-                padding: 0.683em 0.722em 0 0;
-                content: "Φ";
-              }
-              mjx-c.mjx-c3E::before {
-                padding: 0.54em 0.778em 0.04em 0;
-                content: ">";
-              }
-              mjx-c.mjx-c1D43D.TEX-I::before {
-                padding: 0.683em 0.633em 0.022em 0;
-                content: "J";
-              }
-              mjx-c.mjx-c2032::before {
-                padding: 0.56em 0.275em 0 0;
-                content: "′";
-              }
-              mjx-c.mjx-c1D454.TEX-I::before {
-                padding: 0.442em 0.477em 0.205em 0;
-                content: "g";
-              }
-              mjx-c.mjx-c1D436.TEX-I::before {
-                padding: 0.705em 0.76em 0.022em 0;
-                content: "C";
-              }
-              mjx-c.mjx-c1D6F7.TEX-I::before {
-                padding: 0.683em 0.667em 0 0;
-                content: "Φ";
-              }
-              mjx-c.mjx-c2208::before {
-                padding: 0.54em 0.667em 0.04em 0;
-                content: "∈";
-              }
-              mjx-c.mjx-c1D43C.TEX-I::before {
-                padding: 0.683em 0.504em 0 0;
-                content: "I";
-              }
-              mjx-c.mjx-c1D45F.TEX-I::before {
-                padding: 0.442em 0.451em 0.011em 0;
-                content: "r";
-              }
-              mjx-mover {
-                display: inline-block;
-                text-align: left;
-              }
-              mjx-mover:not([limits="false"]) {
-                padding-top: 0.1em;
-              }
-              mjx-mover:not([limits="false"]) > * {
-                display: block;
-                text-align: left;
-              }
-              mjx-c.mjx-c1D44A.TEX-I::before {
-                padding: 0.683em 1.048em 0.022em 0;
-                content: "W";
-              }
-              mjx-c.mjx-c1D45A.TEX-I::before {
-                padding: 0.442em 0.878em 0.011em 0;
-                content: "m";
-              }
-              mjx-c.mjx-c1D43E.TEX-I::before {
-                padding: 0.683em 0.889em 0 0;
-                content: "K";
-              }
-              mjx-c.mjx-c20D7.TEX-V::before {
-                padding: 0.714em 0.5em 0 0;
-                content: "→";
-              }
-              mjx-c.mjx-c1D719.TEX-I::before {
-                padding: 0.694em 0.596em 0.205em 0;
-                content: "ϕ";
-              }
-              mjx-c.mjx-c3A9::before {
-                padding: 0.704em 0.722em 0 0;
-                content: "Ω";
-              }
-              mjx-c.mjx-c1D443.TEX-I::before {
-                padding: 0.683em 0.751em 0 0;
-                content: "P";
-              }
-              mjx-c.mjx-c1D45C.TEX-I::before {
-                padding: 0.441em 0.485em 0.011em 0;
-                content: "o";
-              }
-              mjx-c.mjx-c1D460.TEX-I::before {
-                padding: 0.442em 0.469em 0.01em 0;
-                content: "s";
-              }
-              mjx-c.mjx-c1D703.TEX-I::before {
-                padding: 0.705em 0.469em 0.01em 0;
-                content: "θ";
-              }
-              mjx-c.mjx-c2061::before {
-                padding: 0;
-                content: "";
-              }
-              mjx-c.mjx-c1D711.TEX-I::before {
-                padding: 0.442em 0.654em 0.218em 0;
-                content: "φ";
-              }
-              mjx-c.mjx-c1D456.TEX-I::before {
-                padding: 0.661em 0.345em 0.011em 0;
-                content: "i";
-              }
-              mjx-c.mjx-c1D434.TEX-I::before {
-                padding: 0.716em 0.75em 0 0;
-                content: "A";
-              }
-              mjx-c.mjx-c1D461.TEX-I::before {
-                padding: 0.626em 0.361em 0.011em 0;
-                content: "t";
-              }
-              mjx-c.mjx-c1D6FA.TEX-I::before {
-                padding: 0.704em 0.786em 0 0;
-                content: "Ω";
-              }
-              mjx-msubsup {
-                display: inline-block;
-                text-align: left;
-              }
-              mjx-script {
-                display: inline-block;
-                padding-right: 0.05em;
-                padding-left: 0.033em;
-              }
-              mjx-script > mjx-spacer {
-                display: block;
-              }
-              mjx-c.mjx-c1D449.TEX-I::before {
-                padding: 0.683em 0.769em 0.022em 0;
-                content: "V";
-              }
-              mjx-c.mjx-c222B.TEX-S1::before {
-                padding: 0.805em 0.61em 0.306em 0;
-                content: "∫";
-              }
-              mjx-c.mjx-c2248::before {
-                padding: 0.483em 0.778em 0 0;
-                content: "≈";
-              }
-              mjx-c.mjx-cA0::before {
-                padding: 0 0.25em 0 0;
-                content: " ";
-              }
-              mjx-c.mjx-c1D700.TEX-I::before {
-                padding: 0.452em 0.466em 0.022em 0;
-                content: "ε";
-              }
-              mjx-c.mjx-c72::before {
-                padding: 0.442em 0.392em 0 0;
-                content: "r";
-              }
-              mjx-c.mjx-c65::before {
-                padding: 0.448em 0.444em 0.011em 0;
-                content: "e";
-              }
-              mjx-c.mjx-c62::before {
-                padding: 0.694em 0.556em 0.011em 0;
-                content: "b";
-              }
-              mjx-c.mjx-c6B::before {
-                padding: 0.694em 0.528em 0 0;
-                content: "k";
-              }
-              mjx-c.mjx-c6F::before {
-                padding: 0.448em 0.5em 0.01em 0;
-                content: "o";
-              }
-              mjx-c.mjx-c64::before {
-                padding: 0.694em 0.556em 0.011em 0;
-                content: "d";
-              }
-              mjx-c.mjx-c79::before {
-                padding: 0.431em 0.528em 0.204em 0;
-                content: "y";
-              }
-              mjx-c.mjx-c3C::before {
-                padding: 0.54em 0.778em 0.04em 0;
-                content: "<";
-              }
-              mjx-c.mjx-c2264::before {
-                padding: 0.636em 0.778em 0.138em 0;
-                content: "≤";
-              }
-              mjx-c.mjx-c1D6FC.TEX-I::before {
-                padding: 0.442em 0.64em 0.011em 0;
-                content: "α";
-              }
-              mjx-munder {
-                display: inline-block;
-                text-align: left;
-              }
-              mjx-over {
-                text-align: left;
-              }
-              mjx-munder:not([limits="false"]) {
-                display: inline-table;
-              }
-              mjx-munder > mjx-row {
-                text-align: left;
-              }
-              mjx-under {
-                padding-bottom: 0.1em;
-              }
-              mjx-mspace {
-                display: inline-block;
-                text-align: left;
-              }
-              mjx-c.mjx-c1D44E.TEX-I::before {
-                padding: 0.441em 0.529em 0.01em 0;
-                content: "a";
-              }
-              mjx-c.mjx-c1D462.TEX-I::before {
-                padding: 0.442em 0.572em 0.011em 0;
-                content: "u";
-              }
-              mjx-c.mjx-c52::before {
-                padding: 0.683em 0.736em 0.022em 0;
-                content: "R";
-              }
-              mjx-c.mjx-c1D435.TEX-I::before {
-                padding: 0.683em 0.759em 0 0;
-                content: "B";
-              }
-              mjx-c.mjx-c6C::before {
-                padding: 0.694em 0.278em 0 0;
-                content: "l";
-              }
-              mjx-c.mjx-c69::before {
-                padding: 0.669em 0.278em 0 0;
-                content: "i";
-              }
-              mjx-c.mjx-c2192::before {
-                padding: 0.511em 1em 0.011em 0;
-                content: "→";
-              }
-              mjx-c.mjx-c221E::before {
-                padding: 0.442em 1em 0.011em 0;
-                content: "∞";
-              }
-              mjx-c.mjx-c1D45B.TEX-I::before {
-                padding: 0.442em 0.6em 0.011em 0;
-                content: "n";
-              }
-              mjx-mfrac {
-                display: inline-block;
-                text-align: left;
-              }
-              mjx-frac {
-                display: inline-block;
-                vertical-align: 0.17em;
-                padding: 0 0.22em;
-              }
-              mjx-frac[type="d"] {
-                vertical-align: 0.04em;
-              }
-              mjx-frac[delims] {
-                padding: 0 0.1em;
-              }
-              mjx-frac[atop] {
-                padding: 0 0.12em;
-              }
-              mjx-frac[atop][delims] {
-                padding: 0;
-              }
-              mjx-dtable {
-                display: inline-table;
-                width: 100%;
-              }
-              mjx-dtable > * {
-                font-size: 2000%;
-              }
-              mjx-dbox {
-                display: block;
-                font-size: 5%;
-              }
-              mjx-num {
-                display: block;
-                text-align: center;
-              }
-              mjx-den {
-                display: block;
-                text-align: center;
-              }
-              mjx-mfrac[bevelled] > mjx-num {
-                display: inline-block;
-              }
-              mjx-mfrac[bevelled] > mjx-den {
-                display: inline-block;
-              }
-              mjx-den[align="right"],
-              mjx-num[align="right"] {
-                text-align: right;
-              }
-              mjx-den[align="left"],
-              mjx-num[align="left"] {
-                text-align: left;
-              }
-              mjx-nstrut {
-                display: inline-block;
-                height: 0.054em;
-                width: 0;
-                vertical-align: -0.054em;
-              }
-              mjx-nstrut[type="d"] {
-                height: 0.217em;
-                vertical-align: -0.217em;
-              }
-              mjx-dstrut {
-                display: inline-block;
-                height: 0.505em;
-                width: 0;
-              }
-              mjx-dstrut[type="d"] {
-                height: 0.726em;
-              }
-              mjx-line {
-                display: block;
-                box-sizing: border-box;
-                min-height: 1px;
-                height: 0.06em;
-                border-top: 0.06em solid;
-                margin: 0.06em -0.1em;
-                overflow: hidden;
-              }
-              mjx-line[type="d"] {
-                margin: 0.18em -0.1em;
-              }
-              mjx-mrow {
-                display: inline-block;
-                text-align: left;
-              }
-              mjx-c.mjx-c38::before {
-                padding: 0.666em 0.5em 0.022em 0;
-                content: "8";
-              }
-              mjx-c.mjx-c1D70B.TEX-I::before {
-                padding: 0.431em 0.57em 0.011em 0;
-                content: "π";
-              }
-              mjx-c.mjx-c1D458.TEX-I::before {
-                padding: 0.694em 0.521em 0.011em 0;
-                content: "k";
-              }
-              mjx-c.mjx-c33::before {
-                padding: 0.665em 0.5em 0.022em 0;
-                content: "3";
-              }
-              mjx-c.mjx-cD7::before {
-                padding: 0.491em 0.778em 0 0;
-                content: "×";
-              }
-              mjx-c.mjx-c4A::before {
-                padding: 0.683em 0.514em 0.022em 0;
-                content: "J";
-              }
-              mjx-c.mjx-c2026::before {
-                padding: 0.12em 1.172em 0 0;
-                content: "…";
-              }
-              mjx-c.mjx-c1D452.TEX-I::before {
-                padding: 0.442em 0.466em 0.011em 0;
-                content: "e";
-              }
-              mjx-c.mjx-c73::before {
-                padding: 0.448em 0.394em 0.011em 0;
-                content: "s";
-              }
-              mjx-c.mjx-c1D466.TEX-I::before {
-                padding: 0.442em 0.49em 0.205em 0;
-                content: "y";
-              }
-              mjx-c.mjx-c1D465.TEX-I::before {
-                padding: 0.442em 0.572em 0.011em 0;
-                content: "x";
-              }
-              mjx-c.mjx-c2217::before {
-                padding: 0.465em 0.5em 0 0;
-                content: "∗";
-              }
               mjx-container[jax="CHTML"] {
                 line-height: 0;
               }
@@ -1381,6 +683,94 @@
                 text-align: left;
               }
               mjx-msub {
+                display: inline-block;
+                text-align: left;
+              }
+              mjx-mfrac {
+                display: inline-block;
+                text-align: left;
+              }
+              mjx-frac {
+                display: inline-block;
+                vertical-align: 0.17em;
+                padding: 0 0.22em;
+              }
+              mjx-frac[type="d"] {
+                vertical-align: 0.04em;
+              }
+              mjx-frac[delims] {
+                padding: 0 0.1em;
+              }
+              mjx-frac[atop] {
+                padding: 0 0.12em;
+              }
+              mjx-frac[atop][delims] {
+                padding: 0;
+              }
+              mjx-dtable {
+                display: inline-table;
+                width: 100%;
+              }
+              mjx-dtable > * {
+                font-size: 2000%;
+              }
+              mjx-dbox {
+                display: block;
+                font-size: 5%;
+              }
+              mjx-num {
+                display: block;
+                text-align: center;
+              }
+              mjx-den {
+                display: block;
+                text-align: center;
+              }
+              mjx-mfrac[bevelled] > mjx-num {
+                display: inline-block;
+              }
+              mjx-mfrac[bevelled] > mjx-den {
+                display: inline-block;
+              }
+              mjx-den[align="right"],
+              mjx-num[align="right"] {
+                text-align: right;
+              }
+              mjx-den[align="left"],
+              mjx-num[align="left"] {
+                text-align: left;
+              }
+              mjx-nstrut {
+                display: inline-block;
+                height: 0.054em;
+                width: 0;
+                vertical-align: -0.054em;
+              }
+              mjx-nstrut[type="d"] {
+                height: 0.217em;
+                vertical-align: -0.217em;
+              }
+              mjx-dstrut {
+                display: inline-block;
+                height: 0.505em;
+                width: 0;
+              }
+              mjx-dstrut[type="d"] {
+                height: 0.726em;
+              }
+              mjx-line {
+                display: block;
+                box-sizing: border-box;
+                min-height: 1px;
+                height: 0.06em;
+                border-top: 0.06em solid;
+                margin: 0.06em -0.1em;
+                overflow: hidden;
+              }
+              mjx-line[type="d"] {
+                margin: 0.18em -0.1em;
+              }
+              mjx-mrow {
                 display: inline-block;
                 text-align: left;
               }
@@ -1687,14 +1077,34 @@
                 padding: 0.683em 0.759em 0.021em 0;
                 content: "R";
               }
+              mjx-c.mjx-c38::before {
+                padding: 0.666em 0.5em 0.022em 0;
+                content: "8";
+              }
+              mjx-c.mjx-c1D70B.TEX-I::before {
+                padding: 0.431em 0.57em 0.011em 0;
+                content: "π";
+              }
+              mjx-c.mjx-c1D458.TEX-I::before {
+                padding: 0.694em 0.521em 0.011em 0;
+                content: "k";
+              }
+              mjx-c.mjx-c33::before {
+                padding: 0.665em 0.5em 0.022em 0;
+                content: "3";
+              }
+              mjx-c.mjx-cD7::before {
+                padding: 0.491em 0.778em 0 0;
+                content: "×";
+              }
+              mjx-c.mjx-c4A::before {
+                padding: 0.683em 0.514em 0.022em 0;
+                content: "J";
+              }
             </style>
-            <pre
-              class="frontmatter language-yaml"
-              style="display: none"
-            ><code class="language-yaml is-loaded"><span class="token key atrule">math-engine</span><span class="token punctuation">:</span> mathjax</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
             <div class="markdown-preview-sizer markdown-preview-section">
               <div class="header">
-                <h1 class="page-title heading inline-title" id="1900量子化学历史起源_0">1900量子化学历史起源</h1>
+                <h1 class="page-title heading inline-title" id="_0"></h1>
                 <div class="data-bar"></div>
               </div>
               <div class="markdown-preview-pusher" style="width: 1px; height: 0.1px; margin-bottom: 0px"></div>
@@ -2135,107 +1545,35 @@
                 </p>
               </div>
               <div class="el-pre">
-                <div class="block-language-tikz">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="309.977" height="288.405" viewBox="-72 -72 232.483 216.304">
-                    <g stroke-width=".4" stroke="currentColor" fill="currentColor" stroke-miterlimit="10">
-                      <g stroke-width=".8">
-                        <path d="M-40.842 111.368h187.078" fill="none"></path>
-                        <path d="M144.676 109.289c.13.78 1.56 1.95 1.95 2.08-.39.13-1.82 1.3-1.95 2.08" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-width=".64"></path>
-                        <text y="111.368" x="-40.842" font-family="cmr12" font-size="12" transform="translate(191.52 2.583)" stroke="none">x</text>
-                      </g>
-                      <g stroke-width=".8">
-                        <path d="M-40.842 111.368V-44.98" fill="none"></path>
-                        <path d="M-42.922-43.42c.78-.13 1.95-1.56 2.08-1.95.13.39 1.3 1.82 2.08 1.95" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-width=".64"></path>
-                        <text y="111.368" x="-40.842" font-family="cmr12" font-size="12" transform="translate(-3.1 -163.125)" stroke="none">y</text>
-                      </g>
-                      <path d="M-18.08 111.368v-1.365M4.682 111.368v-1.365M27.444 111.368v-1.365M50.206 111.368v-1.365M72.967 111.368v-1.365M95.73 111.368v-1.365M118.491 111.368v-1.365M141.253 111.368v-1.365M-40.842 97.711h2.277M-40.842 84.054h2.277M-40.842 70.397h2.277M-40.842 56.74h2.277M-40.842 43.082h2.277M-40.842 29.425h2.277M-40.842 15.768h2.277M-40.842 2.11h2.277M-40.842-11.547h2.277M-40.842-25.204h2.277M-40.842-38.861h2.277" fill="none" stroke-width=".8"></path>
-                      <g font-size="10" stroke="none">
-                        <text y="111.368" x="-40.842" font-family="cmr10" transform="translate(16.373 10.477)">0</text>
-                        <text y="111.368" x="-35.842" font-family="cmmi10" transform="translate(16.373 10.477)">:</text>
-                        <text y="111.368" x="-33.064" font-family="cmr10" transform="translate(16.373 10.477)">2</text>
-                      </g>
-                      <g font-size="10" stroke="none">
-                        <text y="111.368" x="-40.842" font-family="cmr10" transform="translate(39.135 10.477)">0</text>
-                        <text y="111.368" x="-35.842" font-family="cmmi10" transform="translate(39.135 10.477)">:</text>
-                        <text y="111.368" x="-33.064" font-family="cmr10" transform="translate(39.135 10.477)">4</text>
-                      </g>
-                      <g font-size="10" stroke="none">
-                        <text y="111.368" x="-40.842" font-family="cmr10" transform="translate(61.897 10.477)">0</text>
-                        <text y="111.368" x="-35.842" font-family="cmmi10" transform="translate(61.897 10.477)">:</text>
-                        <text y="111.368" x="-33.064" font-family="cmr10" transform="translate(61.897 10.477)">6</text>
-                      </g>
-                      <g font-size="10" stroke="none">
-                        <text y="111.368" x="-40.842" font-family="cmr10" transform="translate(84.659 10.477)">0</text>
-                        <text y="111.368" x="-35.842" font-family="cmmi10" transform="translate(84.659 10.477)">:</text>
-                        <text y="111.368" x="-33.064" font-family="cmr10" transform="translate(84.659 10.477)">8</text>
-                      </g>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(111.31 10.477)" stroke="none">1</text>
-                      <g font-size="10" stroke="none">
-                        <text y="111.368" x="-40.842" font-family="cmr10" transform="translate(130.182 10.477)">1</text>
-                        <text y="111.368" x="-35.842" font-family="cmmi10" transform="translate(130.182 10.477)">:</text>
-                        <text y="111.368" x="-33.064" font-family="cmr10" transform="translate(130.182 10.477)">2</text>
-                      </g>
-                      <g font-size="10" stroke="none">
-                        <text y="111.368" x="-40.842" font-family="cmr10" transform="translate(152.944 10.477)">1</text>
-                        <text y="111.368" x="-35.842" font-family="cmmi10" transform="translate(152.944 10.477)">:</text>
-                        <text y="111.368" x="-33.064" font-family="cmr10" transform="translate(152.944 10.477)">4</text>
-                      </g>
-                      <g font-size="10" stroke="none">
-                        <text y="111.368" x="-40.842" font-family="cmr10" transform="translate(175.706 10.477)">1</text>
-                        <text y="111.368" x="-35.842" font-family="cmmi10" transform="translate(175.706 10.477)">:</text>
-                        <text y="111.368" x="-33.064" font-family="cmr10" transform="translate(175.706 10.477)">6</text>
-                      </g>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-8.533 -10.435)" stroke="none">2</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-8.533 -24.092)" stroke="none">4</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-8.533 -37.75)" stroke="none">6</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-8.533 -51.407)" stroke="none">8</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-13.533 -65.064)" stroke="none">10</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-13.533 -78.721)" stroke="none">12</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-13.533 -92.378)" stroke="none">14</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-13.533 -106.036)" stroke="none">16</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-13.533 -119.693)" stroke="none">18</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-13.533 -133.35)" stroke="none">20</text>
-                      <text y="111.368" x="-40.842" font-family="cmr10" font-size="10" transform="translate(-13.533 -147.007)" stroke="none">22</text>
-                      <path
-                        d="M-40.842 111.368h182.098M-40.842 97.711h182.098M-40.842 84.053h182.098M-40.842 70.396h182.098M-40.842 56.738h182.098M-40.842 43.081h182.098M-40.842 29.423h182.098M-40.842 15.766h182.098M-40.842 2.108h182.098M-40.842-11.549h182.098M-40.842-25.207h182.098M-40.842-38.858h182.098M-40.842 111.368v-150.23m22.762 150.23v-150.23m22.763 150.23v-150.23m22.762 150.23v-150.23m22.762 150.23v-150.23m22.763 150.23v-150.23m22.762 150.23v-150.23m22.762 150.23v-150.23m22.762 150.23v-150.23m0 0"
-                        fill="none"
-                        stroke-dasharray="0.4,4.0"
-                      ></path>
-                      <g font-family="cmr12" font-size="12" stroke="none">
-                        <text y="111.368" x="-40.842" transform="translate(10.484 -171.972)">Normalized</text>
-                        <text y="111.368" x="21.494" transform="translate(10.484 -171.972)">Planc</text>
-                        <text y="111.368" x="50.05" transform="translate(10.484 -171.972)">k</text>
-                        <text y="111.368" x="60.168" transform="translate(10.484 -171.972)">distribution</text>
-                      </g>
-                      <g stroke="none">
-                        <text y="111.368" x="-40.842" font-family="cmr12" font-size="12" transform="translate(10.363 25.194)">normalized</text>
-                        <text y="111.368" x="19.213" font-family="cmr12" font-size="12" transform="translate(10.363 25.194)">w</text>
-                        <text y="111.368" x="27.373" font-family="cmr12" font-size="12" transform="translate(10.363 25.194)">a</text>
-                        <text y="111.368" x="32.921" font-family="cmr12" font-size="12" transform="translate(10.363 25.194)">v</text>
-                        <text y="111.368" x="38.796" font-family="cmr12" font-size="12" transform="translate(10.363 25.194)">elength</text>
-                        <text y="111.368" x="79.921" font-family="cmmi12" font-size="12" transform="translate(10.363 25.194)">x</text>
-                        <text y="111.368" x="89.931" font-family="cmr12" font-size="12" transform="translate(10.363 25.194)">=</text>
-                        <text y="106.644" x="107.177" font-family="cmmi8" font-size="8" transform="translate(10.363 25.194)">hc</text>
-                        <path d="M113.966 133.362h15.727v.4h-15.727z"></path>
-                        <text y="115.507" x="103.603" font-family="cmmi8" font-size="8" transform="translate(10.363 25.194)">¸k</text>
-                        <text y="115.507" x="113.201" font-family="cmmi8" font-size="8" transform="translate(10.363 25.194)">T</text>
-                      </g>
-                      <g font-family="cmr12" font-size="12" stroke="none">
-                        <text y="111.368" x="-40.842" transform="rotate(-90 -56.494 115.478)">normalized</text>
-                        <text y="111.368" x="19.213" transform="rotate(-90 -56.494 115.478)">sp</text>
-                        <text y="111.368" x="30.702" transform="rotate(-90 -56.494 115.478)">ectral</text>
-                        <text y="111.368" x="63.34" transform="rotate(-90 -56.494 115.478)">densit</text>
-                        <text y="111.368" x="93.76" transform="rotate(-90 -56.494 115.478)">y</text>
-                      </g>
-                      <path
-                        d="M-35.151 111.323s4.395-19.454 6.083-36.48c1.689-17.025 4.396-71.296 6.084-86.226 1.688-14.93 4.395-21.28 6.083-21.38 1.688-.1 4.395 13.828 6.084 20.656C-9.13-5.278-6.422 9.095-4.734 16.451c1.688 7.356 4.395 18.504 6.083 24.46 1.688 5.955 4.396 14.044 6.084 18.462 1.688 4.418 4.395 10.19 6.083 13.38 1.688 3.19 4.395 7.315 6.083 9.61 1.689 2.294 4.396 5.267 6.084 6.929 1.688 1.661 4.395 3.832 6.083 5.048 1.688 1.216 4.395 2.816 6.084 3.718 1.688.902 4.395 2.104 6.083 2.781 1.688.678 4.395 1.588 6.083 2.103 1.688.515 4.396 1.215 6.084 1.611 1.688.397 4.395.94 6.083 1.25 1.688.308 4.395.734 6.083.977 1.689.243 4.396.581 6.084.775 1.688.193 4.395.464 6.083.619 1.688.155 4.395.374 6.084.5 1.688.125 4.395.303 6.083.405 1.688.103 4.395.25 6.083.333 1.688.085 4.396.205 6.084.275 1.688.07 4.395.17 6.083.229a1312.871 1312.871 0 0 0 12.167.352 1972.064 1972.064 0 0 0 12.167.252"
-                        fill="none"
-                        stroke="#3f75a2"
-                        stroke-width=".8"
-                      ></path>
-                    </g>
-                  </svg>
-                </div>
+                <pre class="language-tikz"><code data-line="0" class="language-tikz is-loaded">\begin{document}
+\begin{tikzpicture}[x=4cm, y=0.4cm,xscale=1,yscale=0.6]
+\definecolor{myblue}{RGB}{63, 117, 162}
+\usetikzlibrary{fpu}
+
+\draw[-&gt;,thick](0,0)--(1.65,0)node[right,font=\large]{x};
+\draw[-&gt;,thick](0,0)--(0,23)node[above,font=\large]{y};
+\foreach \x in {0.2,0.4, ..., 1.6}
+\draw[thick](\x,0)--(\x,0.2);
+\foreach \y in {2,4, ..., 22}
+\draw[thick](0,\y)--(0.02,\y);
+\foreach \x in {0.2, 0.4, ..., 1.6}
+\node[below=0.5] at (\x,0){\pgfmathprintnumber[fixed, precision=1]{\x}};
+
+\foreach \y in {2, 4, ..., 22}
+\node[left] at (0,\y){\y};
+\draw[xstep=0.8cm, ystep=0.8cm, loosely dotted, thin](0,0)grid(1.6,22);
+
+\node[above=0.4cm,font=\large] at (0.8,23){Normalized Planck distribution};
+\node[below=0.4cm,font=\large] at (0.8,0){normalized wavelength $x=\frac{hc}{\lambda kT}$};
+\node[rotate=90,font=\large] at (-0.2,12){normalized  spectral  density };
+
+\begin{scope}
+\pgfkeys{/pgf/fpu=true, /pgf/fpu/output format=fixed}
+\draw[thick,myblue] plot[domain=0.05:1.6, samples=30, smooth] (\x, {1 / ( (\x^5) * (exp(1/\x) - 1) )});
+\end{scope}
+\end{tikzpicture}
+\end{document}
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
               </div>
               <div class="el-h4">
                 <h4 data-heading="历史上引入黑体辐射概念的原因" dir="auto" class="heading" id="历史上引入黑体辐射概念的原因_0">
@@ -3568,75 +2906,86 @@
               </div>
               <div class="el-p"><p dir="auto">此公式即为Stefan-Bolzmann定律</p></div>
               <div class="el-pre">
-                <div class="block-language-tikz">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="333.59" height="328.007" viewBox="-72 -72 250.192 246.005">
-                    <g stroke-width=".8" stroke="currentColor" fill="currentColor" stroke-miterlimit="10">
-                      <g stroke-width=".4">
-                        <path d="m-60.182 81.492 57.213 78.594" fill="none"></path>
-                        <path d="m-1.792 161.702-.59-3.528-.587 1.911-2-.028" stroke="none"></path>
-                        <text y="81.492" x="-60.182" font-family="cmr12" font-size="12" transform="translate(55.289 88.91)" stroke="none">x</text>
-                      </g>
-                      <g stroke-width=".4">
-                        <path d="M-60.182 81.492 98.272 52.656" fill="none"></path>
-                        <path d="m100.24 52.298-3.435-1.001 1.467 1.36-.894 1.788" stroke="none"></path>
-                        <text y="81.492" x="-60.182" font-family="cmr12" font-size="12" transform="translate(163.955 -27.777)" stroke="none">y</text>
-                      </g>
-                      <g stroke-width=".4">
-                        <path d="M-60.182 81.492V-64.354" fill="none"></path>
-                        <path d="m-60.182-66.354-1.6 3.2 1.6-1.2 1.6 1.2" stroke="none"></path>
-                        <text y="81.492" x="-60.182" font-family="cmr12" font-size="12" transform="translate(-8.755 -145.262)" stroke="none">z</text>
-                      </g>
-                      <path d="M-57.262 85.502c4.428-.807 6.712-3.255 5.1-5.47s-6.51-3.356-10.939-2.55c-4.43.806-6.713 3.254-5.1 5.469 1.611 2.215 6.509 3.356 10.938 2.55Zm-2.92-4.01" fill="none" stroke-dasharray="0.8,2.0"></path>
-                      <g stroke-dasharray="0.8,2.0">
-                        <path d="M-21.256 134.964c59.058-10.746 89.508-43.395 69.543-70.822" fill="none"></path>
-                        <path d="m46.757 62.04.766 4.588.764-2.486 2.6.038" stroke="none"></path>
-                      </g>
-                      <g stroke="#0ff" fill="#0ff">
-                        <path d="M38.38 109.944c3.31-2.866 6.12-5.878 6.853-6.886" fill="none"></path>
-                        <path d="m46.763 100.956-4.13 2.14 2.6-.038.763 2.485" stroke="none"></path>
-                      </g>
-                      <g font-family="cmmi10" font-size="10" stroke="none">
-                        <text y="78.853" x="-59.638" transform="translate(110.831 32.371)">~</text>
-                        <text y="81.492" x="-60.182" transform="translate(110.831 32.371)">Á</text>
-                      </g>
-                      <path d="M3.173 24.277c2.126-1.841 3.931-3.777 5.385-5.775M15.32 39.93c2.532-2.192 4.681-4.496 6.413-6.875" fill="none" stroke-dasharray="0.8,2.0"></path>
-                      <path d="M38.381 109.945c0-54.427-44.12-111.284-98.546-126.996" fill="none" stroke-dasharray="0.8,2.0"></path>
-                      <g stroke="#0ff" fill="#0ff" stroke-width=".4">
-                        <path d="M-43.069-10.634c11.318 5.262 22.208 12.37 30.65 19.68" fill="none"></path>
-                        <path d="m-10.908 10.356-1.371-3.304-.14 1.995-1.955.424" stroke="none"></path>
-                      </g>
-                      <g font-family="cmmi10" font-size="10" stroke="none">
-                        <text y="78.853" x="-60.132" transform="translate(31.225 -66.527)">~</text>
-                        <text y="81.492" x="-60.182" transform="translate(31.225 -66.527)">µ</text>
-                      </g>
-                      <path d="M46.761 100.955c0-54.427-47.874-107.26-106.93-118.008" fill="none" stroke-dasharray="0.8,2.0"></path>
-                      <path d="M4.1739999999999995 24.278a1 1 0 1 0-2 0 1 1 0 0 0 2 0ZM9.563 18.5a1 1 0 1 0-2 0 1 1 0 0 0 2 0ZM16.320999999999998 39.931a1 1 0 1 0-2 0 1 1 0 0 0 2 0ZM22.743 33.046a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-1 0" stroke="none" fill="#0ff"></path>
-                      <text y="81.492" x="-60.182" font-family="cmr9" font-size="9" transform="translate(53.585 -54.139)" stroke="none">F</text>
-                      <text y="81.492" x="-60.182" font-family="cmr9" font-size="9" transform="translate(65.115 -66.725)" stroke="none">G</text>
-                      <text y="81.492" x="-60.182" font-family="cmr9" font-size="9" transform="translate(64.834 -38.485)" stroke="none">H</text>
-                      <text y="81.492" x="-60.182" font-family="cmr9" font-size="9" transform="translate(85.658 -45.37)" stroke="none">I</text>
-                      <path d="M13.755 28.802a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-1 0" stroke="none" fill="red"></path>
-                      <g stroke-width=".4">
-                        <path d="m-60.182 81.492 72.937-52.69L120.54-49.06" fill="none"></path>
-                        <path d="m122.16-50.231-3.53.576 1.91.595-.036 2" stroke="none"></path>
-                        <g font-family="cmmi10" font-size="10" stroke="none">
-                          <text y="81.492" x="-60.45" transform="translate(185.876 -128.15)">~</text>
-                          <text y="81.492" x="-60.182" transform="translate(185.876 -128.15)">n</text>
-                        </g>
-                      </g>
-                      <path d="m3.174 24.278 72.937-7.636M8.563 18.5 81.5 10.863M15.321 39.931l72.938-7.635M21.743 33.046 94.68 25.41M76.11 16.642l5.39-5.778 13.18 14.547-6.421 6.885Z" fill="none" stroke-dasharray="0.8,2.0"></path>
-                      <g stroke-width=".4">
-                        <path d="m12.755 28.802 72.937-7.635 70.948-7.427" fill="none"></path>
-                        <path d="m158.63 13.532-3.35-1.258 1.36 1.466-1.027 1.717" stroke="none"></path>
-                        <g font-size="10" stroke="none">
-                          <text y="78.853" x="-57.237" font-family="cmmi10" transform="translate(222.344 -63.068)">~</text>
-                          <text y="81.492" x="-60.182" font-family="cmmi10" transform="translate(222.344 -63.068)">d</text>
-                          <text y="81.492" x="-54.977" font-family="cmr10" transform="translate(222.344 -63.068)">¬</text>
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                </div>
+                <pre class="language-tikz"><code data-line="0" class="language-tikz is-loaded">\usepackage{tikz-3dplot}
+\begin{document}
+\begin{tikzpicture}[scale=1,thick,&gt;=stealth]
+\tdplotsetmaincoords{60}{70}
+%设定观察角度
+\begin{scope}[tdplot_main_coords]
+%绘制三维直角坐标系
+\draw[-&gt;,thin](0,0,0)--(6,0,0)node[font=\large,below]{x};
+\draw[-&gt;,thin](0,0,0)--(0,6,0)node[font=\large,right]{y};
+\draw[-&gt;,thin](0,0,0)--(0,0,6)node[font=\large,left]{z};
+%设定球坐标
+\tdplotsetcoord{O}{0}{0}{0}
+\tdplotsetcoord{A}{4}{0}{0}
+\tdplotsetcoord{B}{4}{90}{40}
+\tdplotsetcoord{C}{4}{90}{50}
+\tdplotsetcoord{D}{4}{90}{0}
+\tdplotsetcoord{E}{4}{90}{90}
+\tdplotsetcoord{F}{4}{40}{40}
+\tdplotsetcoord{G}{4}{40}{50}
+\tdplotsetcoord{H}{4}{50}{40}
+\tdplotsetcoord{I}{4}{50}{50}
+\tdplotsetcoord{J}{4}{45}{45}
+\tdplotsetcoord{K}{10}{45}{45}
+\tdplotsetcoord{S}{4}{10}{40}
+\tdplotsetcoord{T}{4}{20}{40}
+%绘制xy平面的圆弧
+\begin{scope}[canvas is xy plane at z=0]
+\draw[dotted](0,0,0)circle[radius=0.3cm];
+\draw[-&gt;,dotted](D)arc[start angle=0,end angle=90,radius=4cm];
+%绘制经度的方向φ
+\draw[-&gt;,cyan](B)arc[start angle=40,end angle=50,radius=4];
+\node[right=0.3cm] at (B) {$\color{cyan}\vec{\phi}$};
+\end{scope}
+%绘制Z=3.06平面上的圆弧（部分纬线）
+\begin{scope}[canvas is xy plane at z=3.06]
+\draw[dotted](F)arc[start angle=40,end angle=50,radius=2.57];
+\end{scope}
+%绘制Z=2.57平面上的圆弧（部分纬线）
+\begin{scope}[canvas is xy plane at z=2.57]
+\draw[dotted](H)arc[start angle=40,end angle=50,radius=3.06];
+\end{scope}
+%绘制40度方向的经线
+\tdplotsetthetaplanecoords{40}
+\begin{scope}[tdplot_rotated_coords]
+\draw[canvas is yx plane at z=0,dotted](B)arc[start angle=0,end angle=90,radius=4cm];
+\draw[canvas is yx plane at z=0,thin,cyan,-&gt;](S)arc[start angle=80,end angle=60,radius=4cm];
+\node[below=0.1cm] at (T){$\color{cyan}\vec\theta$};
+\end{scope}
+%绘制50度方向的经线
+\tdplotsetthetaplanecoords{50}
+\begin{scope}[tdplot_rotated_coords]
+\draw[canvas is yx plane at z=0,dotted](C)arc[start angle=0,end angle=90,radius=4cm];
+\end{scope}
+%绘制球面微元的顶点
+\fill[cyan](F)circle[radius=1pt];
+\fill[cyan](G)circle[radius=1pt];
+\fill[cyan](H)circle[radius=1pt];
+\fill[cyan](I)circle[radius=1pt];
+\node[font=\small,left] at (F){F};
+\node[font=\small,above] at (G){G};
+\node[font=\small,left] at (H){H};
+\node[font=\small,right] at (I){I};
+%绘制球面微元的中心点J
+\fill[red](J)circle[radius=1pt];
+%绘制球面微元的外法线方向
+\draw[-&gt;,thin](O)--(J)--(K)node[right]{$\vec{n}$};
+%绘制：在时间dt范围内，沿着某个立体角dΩ，扫过球面微元FGIH的光子的体积
+\draw[dotted](F)--++(2,2,1)coordinate(L);
+\draw[dotted](G)--++(2,2,1)coordinate(M);
+\draw[dotted](H)--++(2,2,1)coordinate(N);
+\draw[dotted](I)--++(2,2,1)coordinate(O);
+\draw[dotted](L)--(M)--(O)--(N)--cycle;
+%绘制立体角dΩ的中心线方向
+\coordinate (Q) at ($(J)+(2,2,1)$);
+\coordinate (R) at ($(J)+(4,4,2)$);
+\draw[-&gt;,thin](J)--(Q)--(R)node[right]{$\vec{d\Omega}$};
+\end{scope}
+\end{tikzpicture}
+\end{document}
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
               </div>
               <div class="el-p">
                 <p dir="auto">
@@ -5330,61 +4679,29 @@
               <div class="el-p"><p dir="auto">假设2：把入射X射线与被轰击的电子视为系统，该系统受到外部的合外力为零，即系统的动量守恒。</p></div>
               <div class="el-p"><p dir="auto">由动量守恒的假设，可知入射光子的动量、散射光子的动量和反冲电子的动量必定在同一平面内，其位置和方向关系如图所示。</p></div>
               <div class="el-pre">
-                <div class="block-language-tikz">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="321.186" height="187.176" viewBox="-72 -72 240.889 140.382">
-                    <g stroke-width=".4" stroke="currentColor" fill="currentColor" stroke-miterlimit="10">
-                      <path d="M-72.07-.999h225.622" fill="none"></path>
-                      <path d="m155.552-.999-3.2-1.6 1.2 1.6-1.2 1.6" stroke="none"></path>
-                      <text y="-.999" x="-43.617" font-family="cmr12" font-size="12" transform="translate(202.702 2.583)" stroke="none">x</text>
-                      <path d="M-43.617 55.907V-55.904" fill="none"></path>
-                      <path d="m-43.617-57.904-1.6 3.2 1.6-1.2 1.6 1.2" stroke="none"></path>
-                      <text y="-.999" x="-43.617" font-family="cmr12" font-size="12" transform="translate(-3.1 -62.772)" stroke="none">y</text>
-                      <path d="M127.1-.999H-43.618L90.068-49.656" fill="none"></path>
-                      <g stroke="#8080ff" fill="#8080ff" stroke-width=".8">
-                        <path d="M-15.165-.999c0-3.317-.581-6.613-.827-7.288" fill="none"></path>
-                        <path d="m-16.88-10.73-.532 4.62 1.42-2.177 2.489.755" stroke="none"></path>
-                        <text y="-.999" x="-43.617" font-family="cmmi10" font-size="10" transform="translate(31.138 -2.456)" fill="#8080ff" stroke="none">µ</text>
-                      </g>
-                      <g stroke-width=".8">
-                        <path d="M-43.617-.999h168.116" fill="none"></path>
-                        <path d="m127.1-.999-4.16-2.08 1.56 2.08-1.56 2.08" stroke="none"></path>
-                        <g stroke="none">
-                          <text y="-4.032" x="-41.896" font-family="cmmi12" font-size="12" transform="translate(136.396 15.32)">~</text>
-                          <text y="-.999" x="-43.617" font-family="cmmi12" font-size="12" transform="translate(136.396 15.32)">P</text>
-                          <text y=".801" x="-36.044" font-family="cmmi8" font-size="8" transform="translate(136.396 15.32)">I</text>
-                          <text y=".801" x="-31.734" font-family="cmmi8" font-size="8" transform="translate(136.396 15.32)">ncident</text>
-                          <text y=".801" x="-1.096" font-family="cmmi8" font-size="8" transform="translate(136.396 15.32)">photon</text>
-                        </g>
-                      </g>
-                      <g stroke-width=".8">
-                        <path d="M-43.617-.999 87.624-48.767" fill="none"></path>
-                        <path d="m90.068-49.656-4.62-.532 2.176 1.42-.754 2.489" stroke="none"></path>
-                        <g stroke="none">
-                          <text y="-4.032" x="-41.896" font-family="cmmi12" font-size="12" transform="translate(97.515 -55.746)">~</text>
-                          <text y="-.999" x="-43.617" font-family="cmmi12" font-size="12" transform="translate(97.515 -55.746)">P</text>
-                          <text y=".801" x="-36.044" font-family="cmmi8" font-size="8" transform="translate(97.515 -55.746)">S</text>
-                          <text y=".801" x="-30.427" font-family="cmmi8" font-size="8" transform="translate(97.515 -55.746)">catter</text>
-                          <text y=".801" x="-8.077" font-family="cmmi8" font-size="8" transform="translate(97.515 -55.746)">ed</text>
-                          <text y=".801" x="2.601" font-family="cmmi8" font-size="8" transform="translate(97.515 -55.746)">photon</text>
-                        </g>
-                      </g>
-                      <g stroke-width=".8">
-                        <path d="m-43.617-.999 35.457 46.59" fill="none"></path>
-                        <path d="m-6.586 47.66-.864-4.57-.71 2.5-2.6.019" stroke="none"></path>
-                        <g stroke="none">
-                          <text y="-4.032" x="-41.896" font-family="cmmi12" font-size="12" transform="translate(4.656 63.977)">~</text>
-                          <text y="-.999" x="-43.617" font-family="cmmi12" font-size="12" transform="translate(4.656 63.977)">P</text>
-                          <text y=".801" x="-36.044" font-family="cmmi8" font-size="8" transform="translate(4.656 63.977)">R</text>
-                          <text y=".801" x="-29.592" font-family="cmmi8" font-size="8" transform="translate(4.656 63.977)">ecoil</text>
-                          <text y=".801" x="-9.972" font-family="cmmi8" font-size="8" transform="translate(4.656 63.977)">el</text>
-                          <text y=".801" x="-3.397" font-family="cmmi8" font-size="8" transform="translate(4.656 63.977)">ectr</text>
-                          <text y=".801" x="11.369" font-family="cmmi8" font-size="8" transform="translate(4.656 63.977)">on</text>
-                        </g>
-                      </g>
-                      <path d="M90.068-49.656 127.099-1-6.586 47.66" fill="none" stroke="gray" stroke-width=".8" stroke-dasharray="0.8,2.0"></path>
-                    </g>
-                  </svg>
-                </div>
+                <pre class="language-tikz"><code data-line="0" class="language-tikz is-loaded">\usetikzlibrary{calc}
+\usetikzlibrary{angles,quotes}
+\begin{document}
+\begin{tikzpicture}[&gt;=stealth]
+
+\draw[-&gt;,thin](-1,0)--(7,0)node[font=\large,right]{x};
+\draw[-&gt;,thin](0,-2)--(0,2)node[font=\large,above]{y};
+
+%\coordinate (O) at (0,0);
+%\coordinate (A) at (0:6);
+%\coordinate (B) at (30:4);
+
+\draw[thin](0:6)coordinate(A)--(0,0)coordinate(O)--(20:5)coordinate(B)
+pic["$\theta$", -&gt;, draw, thick, blue!50, angle radius=1cm,angle eccentricity=1.2]{angle=A--O--B};
+
+\coordinate (C) at ($(A)-(B)$);
+\draw[-&gt;,thick](O)--(A)node[font=\large,below]{$\vec{P}_{Incident \; photon}$};
+\draw[-&gt;,thick](O)--(B)node[font=\large,above]{$\vec{P}_{Scattered \; photon}$};
+\draw[-&gt;,thick](O)--(C)node[font=\large,below]{$\vec{P}_{Recoil \; electron}$};
+\draw[dotted,thick,gray](B)--(A)--(C);
+\end{tikzpicture}
+\end{document}
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
               </div>
               <div class="el-p">
                 <p dir="auto">
@@ -6418,93 +5735,29 @@
                 </p>
               </div>
               <div class="el-pre">
-                <div class="block-language-tikz">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="300.165" height="293.408" viewBox="-72 -72 225.124 220.056">
-                    <g stroke-width=".4" stroke="currentColor" fill="currentColor" stroke-miterlimit="10">
-                      <path d="M-40.371 134.55h174.407" fill="none"></path>
-                      <path d="m136.036 134.55-3.2-1.6 1.2 1.6-1.2 1.6" stroke="none"></path>
-                      <g stroke="none">
-                        <text y="129.826" x="-39.171" font-family="cmmi8" font-size="8" transform="translate(181.363 3.027)">T</text>
-                        <path d="M142.192 134.378h6.129v.4h-6.129z"></path>
-                        <text y="138.689" x="-38.207" font-family="cmmi8" font-size="8" transform="translate(181.363 3.027)">µ</text>
-                      </g>
-                      <path d="M-40.371 134.55V-59.771" fill="none"></path>
-                      <path d="m-40.371-61.772-1.6 3.2 1.6-1.2 1.6 1.2" stroke="none"></path>
-                      <g stroke="none">
-                        <text y="129.826" x="-39.171" font-family="cmmi8" font-size="8" transform="translate(-21.899 -193.296)">C</text>
-                        <text y="130.826" x="-33.113" font-family="cmmi6" font-size="6" transform="translate(-21.899 -193.296)">m</text>
-                        <path d="M-61.07-61.945h13.121v.4H-61.07z"></path>
-                        <text y="138.689" x="-37.962" font-family="cmr8" font-size="8" transform="translate(-21.899 -193.296)">3</text>
-                        <text y="138.689" x="-33.712" font-family="cmmi8" font-size="8" transform="translate(-21.899 -193.296)">R</text>
-                      </g>
-                      <path
-                        d="M-40.371 134.55h170.716M-40.37 117.479h170.716M-40.37 100.405h170.716M-40.37 83.333h170.716M-40.37 66.26h170.716M-40.37 49.187h170.716M-40.37 32.115h170.716M-40.37 15.042h170.716M-40.37-2.031h170.716M-40.37-19.103h170.716M-40.37-36.116h170.716M-40.37 134.55V-36.166m11.38 170.717V-36.166m11.381 170.717V-36.166m11.381 170.717V-36.166M5.152 134.551V-36.166m11.381 170.717V-36.166m11.381 170.717V-36.166m11.381 170.717V-36.166m11.381 170.717V-36.166m11.38 170.717V-36.166m11.382 170.717V-36.166m11.38 170.717V-36.166M96.2 134.551V-36.166m11.38 170.717V-36.166m11.382 170.717V-36.166m11.38 170.717V-36.166m.003 0"
-                        fill="none"
-                        stroke="gray"
-                        stroke-dasharray="0.4,2.0"
-                      ></path>
-                      <path d="M16.534 134.55v-5.12" fill="none"></path>
-                      <text y="134.551" x="-40.371" font-family="cmr9" font-size="9" transform="translate(54.593 9.902)" stroke="none">1</text>
-                      <path d="M73.44 134.55v-5.12" fill="none"></path>
-                      <text y="134.551" x="-40.371" font-family="cmr9" font-size="9" transform="translate(111.498 9.902)" stroke="none">2</text>
-                      <path d="M130.345 134.55v-5.12" fill="none"></path>
-                      <text y="134.551" x="-40.371" font-family="cmr9" font-size="9" transform="translate(168.404 9.902)" stroke="none">3</text>
-                      <path d="M-40.371 100.408h1.707" fill="none"></path>
-                      <g font-size="9" stroke="none">
-                        <text y="134.551" x="-40.371" font-family="cmr9" transform="translate(-19.336 -31.243)">0</text>
-                        <text y="134.551" x="-35.746" font-family="cmmi9" transform="translate(-19.336 -31.243)">:</text>
-                        <text y="134.551" x="-33.177" font-family="cmr9" transform="translate(-19.336 -31.243)">2</text>
-                      </g>
-                      <path d="M-40.371 66.265h1.707" fill="none"></path>
-                      <g font-size="9" stroke="none">
-                        <text y="134.551" x="-40.371" font-family="cmr9" transform="translate(-19.336 -65.386)">0</text>
-                        <text y="134.551" x="-35.746" font-family="cmmi9" transform="translate(-19.336 -65.386)">:</text>
-                        <text y="134.551" x="-33.177" font-family="cmr9" transform="translate(-19.336 -65.386)">4</text>
-                      </g>
-                      <path d="M-40.371 32.122h1.707" fill="none"></path>
-                      <g font-size="9" stroke="none">
-                        <text y="134.551" x="-40.371" font-family="cmr9" transform="translate(-19.336 -99.528)">0</text>
-                        <text y="134.551" x="-35.746" font-family="cmmi9" transform="translate(-19.336 -99.528)">:</text>
-                        <text y="134.551" x="-33.177" font-family="cmr9" transform="translate(-19.336 -99.528)">6</text>
-                      </g>
-                      <path d="M-40.371-2.02h1.707" fill="none"></path>
-                      <g font-size="9" stroke="none">
-                        <text y="134.551" x="-40.371" font-family="cmr9" transform="translate(-19.336 -133.671)">0</text>
-                        <text y="134.551" x="-35.746" font-family="cmmi9" transform="translate(-19.336 -133.671)">:</text>
-                        <text y="134.551" x="-33.177" font-family="cmr9" transform="translate(-19.336 -133.671)">8</text>
-                      </g>
-                      <path d="M-40.371-36.163h1.707" fill="none"></path>
-                      <text y="134.551" x="-40.371" font-family="cmr9" font-size="9" transform="translate(-12.141 -167.814)" stroke="none">1</text>
-                      <path
-                        d="M-37.526 132.894s6.386-47.552 8.838-63.915c2.451-16.362 6.38-43.345 8.831-54.015C-17.405 4.293-13.472-3.27-11.02-7.928c2.452-4.66 6.386-8.419 8.838-10.688 2.451-2.27 6.38-4.418 8.831-5.669 2.452-1.25 6.386-2.587 8.838-3.344 2.451-.758 6.38-1.628 8.831-2.118 2.452-.49 6.386-1.083 8.838-1.417 2.453-.334 6.386-.751 8.838-.99 2.451-.24 6.38-.557 8.831-.735a613.14 613.14 0 0 1 8.838-.544 860.5 860.5 0 0 1 8.837-.427 1539.699 1539.699 0 0 1 17.67-.6c2.45-.066 6.38-.149 8.831-.203 2.452-.054 6.385-.142 8.837-.187 2.453-.045 6.386-.103 8.838-.138 2.451-.036 6.38-.087 8.831-.12l8.838-.12"
-                        fill="none"
-                        stroke="#286ec8"
-                        stroke-width=".8"
-                      ></path>
-                      <path
-                        d="M-37.526 134.55s4.182-2.793 5.788-10.208c1.606-7.415 4.182-31.931 5.788-43.234 1.607-11.303 4.182-29.518 5.789-38.23 1.606-8.712 4.181-19.02 5.788-24.56 1.606-5.538 4.182-11.85 5.788-15.36 1.606-3.511 4.182-7.64 5.788-9.943 1.606-2.305 4.182-5.095 5.788-6.666 1.606-1.572 4.182-3.55 5.788-4.663 1.606-1.113 4.182-2.538 5.788-3.358 1.607-.82 4.182-1.93 5.789-2.55 1.606-.62 4.182-1.446 5.788-1.92 1.606-.474 4.182-1.122 5.788-1.495 1.606-.374 4.182-.897 5.788-1.196 1.606-.299 4.182-.717 5.788-.959a264.5 264.5 0 0 1 5.788-.784c1.606-.198 4.182-.481 5.788-.646a446.288 446.288 0 0 1 11.577-1.003c1.606-.117 4.182-.284 5.788-.385a943.5 943.5 0 0 1 5.788-.347 816.64 816.64 0 0 1 5.788-.3c1.606-.075 4.182-.18 5.788-.247 1.606-.066 4.182-.17 5.788-.229a1342.875 1342.875 0 0 1 11.577-.362 2844.523 2844.523 0 0 1 17.364-.42c1.606-.032 5.788-.109 5.788-.109"
-                        fill="none"
-                        stroke="#3cb45a"
-                        stroke-width=".8"
-                      ></path>
-                      <g stroke="#286ec8" fill="#286ec8" stroke-width=".8">
-                        <path d="M73.44-2.023h11.38" fill="none"></path>
-                        <g font-family="cmmi9" font-size="9" fill="#286ec8" stroke="none">
-                          <text y="134.551" x="-40.371" transform="translate(131.77 -134.324)">D</text>
-                          <text y="134.551" x="-32.487" transform="translate(131.77 -134.324)">eby</text>
-                          <text y="134.551" x="-19.344" transform="translate(131.77 -134.324)">e</text>
-                        </g>
-                      </g>
-                      <g stroke="#3cb45a" fill="#3cb45a" stroke-width=".8">
-                        <path d="M73.44 15.05h11.38" fill="none"></path>
-                        <g font-family="cmmi9" font-size="9" fill="#3cb45a" stroke="none">
-                          <text y="134.551" x="-40.371" transform="translate(131.77 -116.426)">E</text>
-                          <text y="134.551" x="-33.052" transform="translate(131.77 -116.426)">instein</text>
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                </div>
+                <pre class="language-tikz"><code data-line="0" class="language-tikz is-loaded">\usetikzlibrary{fpu}
+\begin{document}
+\definecolor{myblue}{RGB}{40, 110, 200}
+\definecolor{mygreen}{RGB}{60, 180, 90}
+\begin{tikzpicture}[xscale=2,yscale=6,&gt;=stealth]
+\draw [-&gt;,thin](0,0)--(3.1,0)node[right=0.05cm,font=\large]{$\frac{T}{\theta}$};
+\draw [-&gt;,thin](0,0)--(0,1.15)node[left=0.1cm,font=\large]{$\frac{C_m}{3R}$};
+\draw[xstep=0.2,ystep=0.1,dotted,gray](0,0)grid(3,1);
+\foreach \x in{1,2,3}
+\draw [thin](\x,0)--(\x,0.03)node[below=0.2cm,font=\small]{\x};
+\foreach \y in{0.2,0.4,...,1}
+\draw [thin](0,\y)--(0.03,\y)node[left=0.2cm,font=\small]{\pgfmathprintnumber[fixed,precision=1]\y};
+
+\draw[thick,myblue] plot[smooth] coordinates{(0.0500, 0.0097) (0.2053, 0.3841) (0.3605, 0.7005) (0.5158, 0.8346) (0.6711, 0.8972) (0.8263, 0.9304) (0.9816, 0.9500) (1.1368, 0.9624) (1.2921, 0.9707) (1.4474, 0.9765) (1.6026, 0.9808) (1.7579, 0.9840) (1.9132, 0.9865) (2.0684, 0.9884) (2.2237, 0.9900) (2.3789, 0.9912) (2.5342, 0.9923) (2.6895, 0.9931) (2.8447, 0.9938) (3.0000, 0.9945)};
+\begin{scope}
+\pgfkeys{/pgf/fpu=true,/pgf/fpu/output format=fixed}
+\draw[thick,mygreen] plot[domain=0.05:3,samples=30,smooth](\x,{exp(1/\x)/((\x^2)*((exp(1/\x)-1)^2)});
+\end{scope}
+\draw[thick,myblue](2,0.8)--(2.2,0.8)node[right=0.1cm,font=\small]{$Debye$};
+\draw[thick,mygreen](2,0.7)--(2.2,0.7)node[right=0.1cm,font=\small]{$Einstein$};
+\end{tikzpicture}
+\end{document}
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
               </div>
               <div class="el-h4">
                 <h4 data-heading="1. 爱因斯坦热容公式的证明" dir="auto" class="heading" id="1._爱因斯坦热容公式的证明_0">
@@ -14040,16 +13293,23 @@
                 </p>
               </div>
               <div class="el-pre">
-                <div class="block-language-tikz">
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="75pt" height="75pt" viewBox="0 0 75 75">
-                    <rect width="75" height="75" rx="5pt" ry="5pt" fill="#000" fill-opacity="0.2"></rect>
-                    <circle cx="37.5" cy="37.5" r="15" stroke="#f3f3f3" fill="none" stroke-width="3"></circle>
-                    <circle cx="37.5" cy="37.5" r="15" stroke="#3498db" fill="none" stroke-width="3" stroke-linecap="round">
-                      <animate attributeName="stroke-dasharray" begin="0s" dur="2s" values="56.5 37.7;1 93.2;56.5 37.7" keyTimes="0;0.5;1" repeatCount="indefinite"></animate>
-                      <animate attributeName="stroke-dashoffset" begin="0s" dur="2s" from="0" to="188.5" repeatCount="indefinite"></animate>
-                    </circle>
-                  </svg>
-                </div>
+                <pre class="language-tikz"><code data-line="0" class="language-tikz is-loaded">\usetikzlibrary{fpu}
+\begin{document}
+\definecolor{mygreen}{RGB}{60, 180, 90}
+\begin{tikzpicture}[xscale=0.5,yscale=1,&gt;=stealth]
+\draw [-&gt;,thin](-1,0)--(12.8,0)node[right]{t};
+\draw [-&gt;,thin](0,-1)--(0,5.8)node[left]{f(t)};
+\draw[xstep=1,ystep=1,dotted,gray](0,0)grid(12,5);
+\draw [thin](12,0)--(12,0.1)node[below=0.2cm,font=\large]{12};
+\draw [thin](0,5)--(0.1,5)node[left=0.2cm,font=\large]{5};
+\begin{scope}
+\pgfkeys{/pgf/fpu=true,/pgf/fpu/output format=fixed}
+\draw[thin,mygreen] plot[domain=0.1:12,samples=30,smooth](\x,{((pow(\x,4)*exp(\x))/((exp(\x)-1)^2)});
+\end{scope}
+\draw[thin,mygreen](6,5)--(7,5)node[right=0.1cm,font=\large]{$\displaystyle f(t)=\frac{t^4e^t}{(e^t-1)^2}$};
+\end{tikzpicture}
+\end{document}
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
               </div>
               <div class="el-p">
                 <p dir="auto">
@@ -14636,93 +13896,29 @@ print("use \\draw plot coordinates{...} in tikz")
                 </p>
               </div>
               <div class="el-pre">
-                <div class="block-language-tikz">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="300.165" height="293.408" viewBox="-72 -72 225.124 220.056">
-                    <g stroke-width=".4" stroke="currentColor" fill="currentColor" stroke-miterlimit="10">
-                      <path d="M-40.371 134.55h174.407" fill="none"></path>
-                      <path d="m136.036 134.55-3.2-1.6 1.2 1.6-1.2 1.6" stroke="none"></path>
-                      <g stroke="none">
-                        <text y="129.826" x="-39.171" font-family="cmmi8" font-size="8" transform="translate(181.363 3.027)">T</text>
-                        <path d="M142.192 134.378h6.129v.4h-6.129z"></path>
-                        <text y="138.689" x="-38.207" font-family="cmmi8" font-size="8" transform="translate(181.363 3.027)">µ</text>
-                      </g>
-                      <path d="M-40.371 134.55V-59.771" fill="none"></path>
-                      <path d="m-40.371-61.772-1.6 3.2 1.6-1.2 1.6 1.2" stroke="none"></path>
-                      <g stroke="none">
-                        <text y="129.826" x="-39.171" font-family="cmmi8" font-size="8" transform="translate(-21.899 -193.296)">C</text>
-                        <text y="130.826" x="-33.113" font-family="cmmi6" font-size="6" transform="translate(-21.899 -193.296)">m</text>
-                        <path d="M-61.07-61.945h13.121v.4H-61.07z"></path>
-                        <text y="138.689" x="-37.962" font-family="cmr8" font-size="8" transform="translate(-21.899 -193.296)">3</text>
-                        <text y="138.689" x="-33.712" font-family="cmmi8" font-size="8" transform="translate(-21.899 -193.296)">R</text>
-                      </g>
-                      <path
-                        d="M-40.371 134.55h170.716M-40.37 117.479h170.716M-40.37 100.405h170.716M-40.37 83.333h170.716M-40.37 66.26h170.716M-40.37 49.187h170.716M-40.37 32.115h170.716M-40.37 15.042h170.716M-40.37-2.031h170.716M-40.37-19.103h170.716M-40.37-36.116h170.716M-40.37 134.55V-36.166m11.38 170.717V-36.166m11.381 170.717V-36.166m11.381 170.717V-36.166M5.152 134.551V-36.166m11.381 170.717V-36.166m11.381 170.717V-36.166m11.381 170.717V-36.166m11.381 170.717V-36.166m11.38 170.717V-36.166m11.382 170.717V-36.166m11.38 170.717V-36.166M96.2 134.551V-36.166m11.38 170.717V-36.166m11.382 170.717V-36.166m11.38 170.717V-36.166m.003 0"
-                        fill="none"
-                        stroke="gray"
-                        stroke-dasharray="0.4,2.0"
-                      ></path>
-                      <path d="M16.534 134.55v-5.12" fill="none"></path>
-                      <text y="134.551" x="-40.371" font-family="cmr9" font-size="9" transform="translate(54.593 9.902)" stroke="none">1</text>
-                      <path d="M73.44 134.55v-5.12" fill="none"></path>
-                      <text y="134.551" x="-40.371" font-family="cmr9" font-size="9" transform="translate(111.498 9.902)" stroke="none">2</text>
-                      <path d="M130.345 134.55v-5.12" fill="none"></path>
-                      <text y="134.551" x="-40.371" font-family="cmr9" font-size="9" transform="translate(168.404 9.902)" stroke="none">3</text>
-                      <path d="M-40.371 100.408h1.707" fill="none"></path>
-                      <g font-size="9" stroke="none">
-                        <text y="134.551" x="-40.371" font-family="cmr9" transform="translate(-19.336 -31.243)">0</text>
-                        <text y="134.551" x="-35.746" font-family="cmmi9" transform="translate(-19.336 -31.243)">:</text>
-                        <text y="134.551" x="-33.177" font-family="cmr9" transform="translate(-19.336 -31.243)">2</text>
-                      </g>
-                      <path d="M-40.371 66.265h1.707" fill="none"></path>
-                      <g font-size="9" stroke="none">
-                        <text y="134.551" x="-40.371" font-family="cmr9" transform="translate(-19.336 -65.386)">0</text>
-                        <text y="134.551" x="-35.746" font-family="cmmi9" transform="translate(-19.336 -65.386)">:</text>
-                        <text y="134.551" x="-33.177" font-family="cmr9" transform="translate(-19.336 -65.386)">4</text>
-                      </g>
-                      <path d="M-40.371 32.122h1.707" fill="none"></path>
-                      <g font-size="9" stroke="none">
-                        <text y="134.551" x="-40.371" font-family="cmr9" transform="translate(-19.336 -99.528)">0</text>
-                        <text y="134.551" x="-35.746" font-family="cmmi9" transform="translate(-19.336 -99.528)">:</text>
-                        <text y="134.551" x="-33.177" font-family="cmr9" transform="translate(-19.336 -99.528)">6</text>
-                      </g>
-                      <path d="M-40.371-2.02h1.707" fill="none"></path>
-                      <g font-size="9" stroke="none">
-                        <text y="134.551" x="-40.371" font-family="cmr9" transform="translate(-19.336 -133.671)">0</text>
-                        <text y="134.551" x="-35.746" font-family="cmmi9" transform="translate(-19.336 -133.671)">:</text>
-                        <text y="134.551" x="-33.177" font-family="cmr9" transform="translate(-19.336 -133.671)">8</text>
-                      </g>
-                      <path d="M-40.371-36.163h1.707" fill="none"></path>
-                      <text y="134.551" x="-40.371" font-family="cmr9" font-size="9" transform="translate(-12.141 -167.814)" stroke="none">1</text>
-                      <path
-                        d="M-37.526 132.894s6.386-47.552 8.838-63.915c2.451-16.362 6.38-43.345 8.831-54.015C-17.405 4.293-13.472-3.27-11.02-7.928c2.452-4.66 6.386-8.419 8.838-10.688 2.451-2.27 6.38-4.418 8.831-5.669 2.452-1.25 6.386-2.587 8.838-3.344 2.451-.758 6.38-1.628 8.831-2.118 2.452-.49 6.386-1.083 8.838-1.417 2.453-.334 6.386-.751 8.838-.99 2.451-.24 6.38-.557 8.831-.735a613.14 613.14 0 0 1 8.838-.544 860.5 860.5 0 0 1 8.837-.427 1539.699 1539.699 0 0 1 17.67-.6c2.45-.066 6.38-.149 8.831-.203 2.452-.054 6.385-.142 8.837-.187 2.453-.045 6.386-.103 8.838-.138 2.451-.036 6.38-.087 8.831-.12l8.838-.12"
-                        fill="none"
-                        stroke="#286ec8"
-                        stroke-width=".8"
-                      ></path>
-                      <path
-                        d="M-37.526 134.55s4.182-2.793 5.788-10.208c1.606-7.415 4.182-31.931 5.788-43.234 1.607-11.303 4.182-29.518 5.789-38.23 1.606-8.712 4.181-19.02 5.788-24.56 1.606-5.538 4.182-11.85 5.788-15.36 1.606-3.511 4.182-7.64 5.788-9.943 1.606-2.305 4.182-5.095 5.788-6.666 1.606-1.572 4.182-3.55 5.788-4.663 1.606-1.113 4.182-2.538 5.788-3.358 1.607-.82 4.182-1.93 5.789-2.55 1.606-.62 4.182-1.446 5.788-1.92 1.606-.474 4.182-1.122 5.788-1.495 1.606-.374 4.182-.897 5.788-1.196 1.606-.299 4.182-.717 5.788-.959a264.5 264.5 0 0 1 5.788-.784c1.606-.198 4.182-.481 5.788-.646a446.288 446.288 0 0 1 11.577-1.003c1.606-.117 4.182-.284 5.788-.385a943.5 943.5 0 0 1 5.788-.347 816.64 816.64 0 0 1 5.788-.3c1.606-.075 4.182-.18 5.788-.247 1.606-.066 4.182-.17 5.788-.229a1342.875 1342.875 0 0 1 11.577-.362 2844.523 2844.523 0 0 1 17.364-.42c1.606-.032 5.788-.109 5.788-.109"
-                        fill="none"
-                        stroke="#3cb45a"
-                        stroke-width=".8"
-                      ></path>
-                      <g stroke="#286ec8" fill="#286ec8" stroke-width=".8">
-                        <path d="M73.44-2.023h11.38" fill="none"></path>
-                        <g font-family="cmmi9" font-size="9" fill="#286ec8" stroke="none">
-                          <text y="134.551" x="-40.371" transform="translate(131.77 -134.324)">D</text>
-                          <text y="134.551" x="-32.487" transform="translate(131.77 -134.324)">eby</text>
-                          <text y="134.551" x="-19.344" transform="translate(131.77 -134.324)">e</text>
-                        </g>
-                      </g>
-                      <g stroke="#3cb45a" fill="#3cb45a" stroke-width=".8">
-                        <path d="M73.44 15.05h11.38" fill="none"></path>
-                        <g font-family="cmmi9" font-size="9" fill="#3cb45a" stroke="none">
-                          <text y="134.551" x="-40.371" transform="translate(131.77 -116.426)">E</text>
-                          <text y="134.551" x="-33.052" transform="translate(131.77 -116.426)">instein</text>
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                </div>
+                <pre class="language-tikz"><code data-line="0" class="language-tikz is-loaded">\usetikzlibrary{fpu}
+\begin{document}
+\definecolor{myblue}{RGB}{40, 110, 200}
+\definecolor{mygreen}{RGB}{60, 180, 90}
+\begin{tikzpicture}[xscale=2,yscale=6,&gt;=stealth]
+\draw [-&gt;,thin](0,0)--(3.1,0)node[right=0.05cm,font=\large]{$\frac{T}{\theta}$};
+\draw [-&gt;,thin](0,0)--(0,1.15)node[left=0.1cm,font=\large]{$\frac{C_m}{3R}$};
+\draw[xstep=0.2,ystep=0.1,dotted,gray](0,0)grid(3,1);
+\foreach \x in{1,2,3}
+\draw [thin](\x,0)--(\x,0.03)node[below=0.2cm,font=\small]{\x};
+\foreach \y in{0.2,0.4,...,1}
+\draw [thin](0,\y)--(0.03,\y)node[left=0.2cm,font=\small]{\pgfmathprintnumber[fixed,precision=1]\y};
+
+\draw[thick,myblue] plot[smooth] coordinates{(0.0500, 0.0097) (0.2053, 0.3841) (0.3605, 0.7005) (0.5158, 0.8346) (0.6711, 0.8972) (0.8263, 0.9304) (0.9816, 0.9500) (1.1368, 0.9624) (1.2921, 0.9707) (1.4474, 0.9765) (1.6026, 0.9808) (1.7579, 0.9840) (1.9132, 0.9865) (2.0684, 0.9884) (2.2237, 0.9900) (2.3789, 0.9912) (2.5342, 0.9923) (2.6895, 0.9931) (2.8447, 0.9938) (3.0000, 0.9945)};
+\begin{scope}
+\pgfkeys{/pgf/fpu=true,/pgf/fpu/output format=fixed}
+\draw[thick,mygreen] plot[domain=0.05:3,samples=30,smooth](\x,{exp(1/\x)/((\x^2)*((exp(1/\x)-1)^2)});
+\end{scope}
+\draw[thick,myblue](2,0.8)--(2.2,0.8)node[right=0.1cm,font=\small]{$Debye$};
+\draw[thick,mygreen](2,0.7)--(2.2,0.7)node[right=0.1cm,font=\small]{$Einstein$};
+\end{tikzpicture}
+\end{document}
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
               </div>
               <div class="el-h4">
                 <h4 data-heading="5. 物质热容的本质" dir="auto" class="heading" id="5._物质热容的本质_0">
@@ -23210,7 +22406,7 @@ print("use \\draw plot coordinates{...} in tikz")
                     <button class="clickable-icon nav-action-button tree-collapse-all" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button>
                   </div>
                   <div class="tree-item" data-depth="1">
-                    <a class="tree-item-self is-clickable" href="1900quantumchemistry/1900量子化学历史起源.html#1900量子化学历史起源_0" data-path="#1900量子化学历史起源_0"><div class="tree-item-inner heading-link" heading-name="1900量子化学历史起源">1900量子化学历史起源</div></a>
+                    <a class="tree-item-self is-clickable" href="1900quantumchemistry/1900量子化学历史起源.html#_0" data-path="#_0"><div class="tree-item-inner heading-link" heading-name=""></div></a>
                     <div class="tree-item-children"></div>
                   </div>
                   <div class="tree-item mod-collapsible" data-depth="1">
