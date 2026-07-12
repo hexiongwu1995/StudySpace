@@ -42,6 +42,7 @@
         justify-items: center;
         background-color: var(--Aside-bg);
       }
+
       .TopMenu {
         grid-area: TopMenu;
         display: flex;
@@ -173,5 +174,18 @@
         <p>计算爱因斯坦固体的摩尔熵。请对该积分进行数值计算。</p>
       </div>
     </div>
+    <script>
+      const Toggle = document.getElementById("Toggle");
+      const BodyContainer = document.getElementsByClassName("BodyContainer")[0];
+      let AsideWidth = BodyContainer.querySelector(".Aside").offsetWidth;
+      console.log(AsideWidth);
+      Toggle.addEventListener("click", () => {
+        if (BodyContainer.style.gridTemplateColumns === "0px 4fr") {
+          BodyContainer.style.gridTemplateColumns = `${AsideWidth}px 4fr`;
+        } else {
+          BodyContainer.style.gridTemplateColumns = "0px 4fr";
+        }
+      })
+    </script>
   </body>
 </html>
