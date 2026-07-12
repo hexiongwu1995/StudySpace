@@ -22,7 +22,7 @@
       }
       .BodyContainer {
         display: grid;
-        grid-template-columns: 230px 4fr;
+        grid-template-columns: 0px 1fr;
         grid-template-rows: 60px 1fr;
         grid-template-areas:
           "Aside TopMenu"
@@ -175,17 +175,22 @@
       </div>
     </div>
     <script>
+      // Aside的宽度切换方式
       const Toggle = document.getElementById("Toggle");
       const BodyContainer = document.getElementsByClassName("BodyContainer")[0];
-      let AsideWidth = BodyContainer.querySelector(".Aside").offsetWidth;
-      console.log(AsideWidth);
+      let AsideWidth = parseFloat( window.getComputedStyle(BodyContainer).gridTemplateColumns.split(" ")[0]);
+      // console.log(window.getComputedStyle(BodyContainer).gridTemplateColumns)
       Toggle.addEventListener("click", () => {
-        if (BodyContainer.style.gridTemplateColumns === "0px 4fr") {
+        if (AsideWidth === 0) {
+          AsideWidth = 230;
+          BodyContainer.style.gridTemplateColumns = `${AsideWidth}px 4fr`;
+        } else if (AsideWidth === 230) {
+          AsideWidth = 0;
           BodyContainer.style.gridTemplateColumns = `${AsideWidth}px 4fr`;
         } else {
-          BodyContainer.style.gridTemplateColumns = "0px 4fr";
+          alert("AsideWidth is not 0 or 230");
         }
-      })
+      });
     </script>
   </body>
 </html>
