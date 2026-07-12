@@ -86,6 +86,18 @@
     <p>计算爱因斯坦固体的摩尔熵。请对该积分进行数值计算。</p> -->
 
     <style>
+      html {
+        font-family: Arial, "KaiTi", sans-serif;
+        line-height: 1.2;
+        background-color: #ffffff;
+        --BodyContainer-bg: #fafafa;
+        --aside-bg: #fafafa;
+        --topMenu-bg: #f5f5f5;
+        --mainContent-bg: #f5f5f5;
+        --BodyContainer-border: #e1e1e1;
+        --topMenu-border: #e1e1e1;
+        --text-color: #333;
+      }
       .BodyContainer {
         display: grid;
         grid-template-columns: minmax(250px, 1fr) 4fr;
@@ -93,8 +105,8 @@
         grid-template-areas:
           "aside TopMenu"
           "aside mainContent";
-        background-color: #ffffff;
-        border: 1px solid #e1e1e1;
+        background-color: var(--BodyContainer-bg);
+        border: 1px solid var(--BodyContainer-border);
         border-radius: 16px;
         overflow: hidden;
       }
@@ -106,7 +118,7 @@
         justify-content: flex-start;
         /* align-content: flex-start; */
         justify-items: center;
-        background-color: #fafafa;
+        background-color: var(--aside-bg);
       }
       .TopMenu {
         grid-area: TopMenu;
@@ -115,8 +127,8 @@
         justify-content: flex-end;
         /* align-content: center; */
         align-items: center;
-        background-color: #f5f5f5;
-        border-bottom: 1px solid #cecece;
+        background-color: var(--topMenu-bg);
+        border-bottom: 1px solid var(--topMenu-border);
         gap: 20px;
         padding: 10px;
       }
@@ -136,7 +148,7 @@
       .mainContent {
         grid-area: mainContent;
         display: block;
-        background-color: #f5f5f5;
+        background-color: var(--mainContent-bg);
         padding: 0 20px;
         margin: 0;
       }
