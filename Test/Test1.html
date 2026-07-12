@@ -77,7 +77,40 @@
       #Toggle {
         margin-right: auto;
       }
+
+      /* 折叠状态：aside 宽度缩为 0，内容隐藏 */
+      .BodyContainer.aside-collapsed {
+        grid-template-columns: 0px 4fr; /* 第一列宽度为 0 */
+      }
+
+      .BodyContainer.aside-collapsed .aside {
+        overflow: hidden;
+        width: 0;
+        padding: 0;
+        /* 可选：添加过渡动画 */
+      }
+
+      /* 为 aside 添加过渡效果（可选） */
+      .aside {
+        transition:
+          width 0.3s ease,
+          padding 0.3s ease;
+        /* 保留你现有的其他属性 */
+      }
     </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggleBtn = document.getElementById("Toggle");
+        const container = document.querySelector(".BodyContainer");
+
+        // 默认折叠
+        container.classList.add("aside-collapsed");
+
+        toggleBtn.addEventListener("click", function () {
+          container.classList.toggle("aside-collapsed");
+        });
+      });
+    </script>
   </head>
   <body>
     <div class="BodyContainer">
