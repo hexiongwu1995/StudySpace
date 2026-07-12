@@ -13,34 +13,34 @@
         line-height: 1.2;
         background-color: #ffffff;
         --BodyContainer-bg: #f5f5f5;
-        --aside-bg: #fafafa;
-        --topMenu-bg: #f5f5f5;
-        --mainContent-bg: #f5f5f5;
+        --Aside-bg: #fafafa;
+        --TopMenu-bg: #f5f5f5;
+        --MainContent-bg: #f5f5f5;
         --BodyContainer-border: #e1e1e1;
-        --topMenu-border: #e1e1e1;
-        --text-color: #333;
+        --TopMenu-border: #e1e1e1;
+        --Text-color: #333;
       }
       .BodyContainer {
         display: grid;
         grid-template-columns: 230px 4fr;
         grid-template-rows: 60px 1fr;
         grid-template-areas:
-          "aside TopMenu"
-          "aside mainContent";
+          "Aside TopMenu"
+          "Aside MainContent";
         background-color: var(--BodyContainer-bg);
         border: 1px solid var(--BodyContainer-border);
         border-radius: 16px;
         overflow: hidden;
       }
-      .aside {
-        grid-area: aside;
+      .Aside {
+        grid-area: Aside;
         display: flex;
         flex-direction: column;
 
         justify-content: flex-start;
         /* align-content: flex-start; */
         justify-items: center;
-        background-color: var(--aside-bg);
+        background-color: var(--Aside-bg);
       }
       .TopMenu {
         grid-area: TopMenu;
@@ -49,8 +49,8 @@
         justify-content: flex-end;
         /* align-content: center; */
         align-items: center;
-        background-color: var(--topMenu-bg);
-        border-bottom: 1px solid var(--topMenu-border);
+        background-color: var(--TopMenu-bg);
+        border-bottom: 1px solid var(--TopMenu-border);
         gap: 20px;
         padding: 10px;
       }
@@ -67,12 +67,12 @@
         border: none;
         background-color: transparent;
       }
-      .mainContent {
+      .MainContent {
         max-width: 800px;
         margin: 20px auto;
-        grid-area: mainContent;
+        grid-area: MainContent;
         display: block;
-        background-color: var(--mainContent-bg);
+        background-color: var(--MainContent-bg);
         padding: 0 20px;
       }
       #Toggle {
@@ -80,23 +80,20 @@
       }
 
       /* 折叠状态：aside 宽度缩为 0，内容隐藏 */
-      .BodyContainer.aside-collapsed {
+      .BodyContainer.Aside-Collapsed {
         grid-template-columns: 0px 4fr; /* 第一列宽度为 0 */
       }
 
-      .BodyContainer.aside-collapsed .aside {
-        overflow: hidden;
+      .BodyContainer.Aside-Collapsed .Aside {
         width: 0;
         padding: 0;
-        /* 可选：添加过渡动画 */
+        overflow: hidden;
       }
 
-      /* 为 aside 添加过渡效果（可选） */
-      .aside {
+      .Aside {
         transition:
           width 1s ease,
           padding 1s ease;
-        /* 保留你现有的其他属性 */
       }
     </style>
     <script>
@@ -105,17 +102,19 @@
         const container = document.querySelector(".BodyContainer");
 
         // 默认折叠
-        container.classList.add("aside-collapsed");
+        container.classList.add("Aside-Collapsed");
 
+        console.log(toggleBtn);
+        console.log(container);
         toggleBtn.addEventListener("click", function () {
-          container.classList.toggle("aside-collapsed");
+          container.classList.toggle("Aside-Collapsed");
         });
       });
     </script>
   </head>
   <body>
     <div class="BodyContainer">
-      <div class="aside">
+      <div class="Aside">
         <div class="TOC_Title"></div>
         <div class="TOC"></div>
       </div>
@@ -127,7 +126,7 @@
         <button class="MenuButton" id="GitHub"><i class="fa-brands fa-github"></i></button>
       </div>
 
-      <div class="mainContent">
+      <div class="MainContent">
         <h1>量子化学起源历史简介</h1>
 
         <p>1900年：普朗克提出能量量子化假说</p>
