@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main
-    paths: .
-      # - '1900quantumchemistry/**'
-      # - 'site-lib/**'
-      # - '.github/workflows/deploy.yml'
+    paths: 
+      - '1900quantumchemistry/**'
+      - 'site-lib/**'
+      - 'Test/**'
+      - '.github/workflows/deploy.yml'
 
 jobs:
   deploy:
