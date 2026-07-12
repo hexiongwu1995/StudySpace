@@ -174,22 +174,15 @@
         <p>计算爱因斯坦固体的摩尔熵。请对该积分进行数值计算。</p>
       </div>
     </div>
+
     <script>
-      // Aside的宽度切换方式
-      const Toggle = document.getElementById("Toggle");
-      const BodyContainer = document.getElementsByClassName("BodyContainer")[0];
-      let AsideWidth = parseFloat( window.getComputedStyle(BodyContainer).gridTemplateColumns.split(" ")[0]);
-      // console.log(window.getComputedStyle(BodyContainer).gridTemplateColumns)
-      Toggle.addEventListener("click", () => {
-        if (AsideWidth === 0) {
-          AsideWidth = 230;
-          BodyContainer.style.gridTemplateColumns = `${AsideWidth}px 4fr`;
-        } else if (AsideWidth === 230) {
-          AsideWidth = 0;
-          BodyContainer.style.gridTemplateColumns = `${AsideWidth}px 4fr`;
-        } else {
-          alert("AsideWidth is not 0 or 230");
-        }
+      const toggle = document.getElementById("Toggle");
+      const bodyContainer = document.querySelector(".BodyContainer");
+      let isCollapsed = true; 
+
+      toggle.addEventListener("click", () => {
+        bodyContainer.style.gridTemplateColumns = isCollapsed ? "230px 1fr" : "0 1fr";
+        isCollapsed = !isCollapsed;
       });
     </script>
   </body>
