@@ -78,39 +78,7 @@
       #Toggle {
         margin-right: auto;
       }
-
-      /* 折叠状态：aside 宽度缩为 0，内容隐藏 */
-      .BodyContainer.Aside-Collapsed {
-        grid-template-columns: 0px 4fr; /* 第一列宽度为 0 */
-      }
-
-      .BodyContainer.Aside-Collapsed .Aside {
-        width: 0;
-        padding: 0;
-        overflow: hidden;
-      }
-
-      .Aside {
-        transition:
-          width 1s ease,
-          padding 1s ease;
-      }
     </style>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggleBtn = document.getElementById("Toggle");
-        const container = document.querySelector(".BodyContainer");
-
-        // 默认折叠
-        container.classList.add("Aside-Collapsed");
-
-        console.log(toggleBtn);
-        console.log(container);
-        toggleBtn.addEventListener("click", function () {
-          container.classList.toggle("Aside-Collapsed");
-        });
-      });
-    </script>
   </head>
   <body>
     <div class="BodyContainer">
