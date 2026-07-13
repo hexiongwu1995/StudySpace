@@ -90,6 +90,25 @@
       #Toggle {
         margin-right: auto;
       }
+
+      /* 重置计数器 —— 每个 <ol> 内部从 0 开始 */
+      ol {
+        counter-reset: item;
+        list-style: none; /* 去掉默认序号 */
+        padding-left: 1.5em;
+      }
+      /* 每个 <li> 递增计数器 */
+      ol li {
+        counter-increment: item;
+        margin-bottom: 0.3em;
+      }
+      /* 在每个 <li> 前面显示当前层级的完整编号 */
+      ol li::before {
+        content: counters(item, ".") ".";
+        color: #555;
+        font-weight: bold;
+        margin-right: 0.5em;
+      }
     </style>
   </head>
   <body>
@@ -114,6 +133,17 @@
           <p>1900年：普朗克提出能量量子化假说</p>
           <p>事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（"量子"）发射或吸收</p>
           <p>意义：标志量子理论的诞生。</p>
+          <ol>
+            <li>1905年：爱因斯坦提出光量子假说</li>
+            <li>
+              1907年：爱因斯坦提出固体热容理论
+              <ol>
+                <li>1900年：普朗克提出能量量子化假说</li>
+                <li>事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（"量子"）发射或吸收</li>
+                <li>意义：标志量子理论的诞生。</li>
+              </ol>
+            </li>
+          </ol>
         </section>
 
         <section>
@@ -202,7 +232,7 @@
       let isCollapsed = true;
 
       toggle.addEventListener("click", () => {
-        bodyContainer.style.gridTemplateColumns = isCollapsed ? "260px 1fr" : "0 1fr";
+        bodyContainer.style.gridTemplateColumns = isCollapsed ? "300px 1fr" : "0 1fr";
         isCollapsed = !isCollapsed;
       });
     </script>
@@ -211,7 +241,7 @@
       // ===== 改进版目录生成 =====
       const toc = document.querySelector(".TOC");
       const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4, .MainContent h5, .MainContent h6");
-      const stack = [{ level: 1, list: document.createElement("ul") }];
+      const stack = [{ level: 1, list: document.createElement("ol") }];
       toc.appendChild(stack[0].list);
 
       headings.forEach((heading, i) => {
@@ -239,11 +269,10 @@
         }
         stack[stack.length - 1].list.appendChild(li);
 
-        const subList = document.createElement("ul");
+        const subList = document.createElement("ol");
         li.appendChild(subList);
         stack.push({ level, list: subList });
       });
     </script>
-
   </body>
 </html>
