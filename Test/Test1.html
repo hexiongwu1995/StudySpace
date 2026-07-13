@@ -278,7 +278,7 @@
             .trim()
             .toLowerCase()
             .replace(/\s+/g, "-")
-            .replace(/[^\w-\u4e00-\u9fff]/g, "");
+            .replace(/[^\w\u4e00-\u9fff-]/g, "");
           heading.id = base || `toc-${i}`;
         }
 
@@ -290,7 +290,9 @@
         a.style.color = "#333";
         li.appendChild(a);
 
-        while (stack.length > 0 && stack[stack.length - 1].level >= level) stack.pop();
+        while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+          stack.pop();
+        }
         stack[stack.length - 1].list.appendChild(li);
 
         const subList = document.createElement("ul");
