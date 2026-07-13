@@ -200,69 +200,6 @@
       });
     </script>
 
-    <!-- <script>
-      // ===== 目录生成 =====
-      const toc = document.querySelector(".TOC");
-      const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4");
-
-      headings.forEach((h,i) => {
-        console.log(h,i);
-      });
-      // console.log(headings[0]);
-      // console.log(typeof(headings[0]));
-      const tocList = document.createElement("ul");
-      toc.appendChild(tocList);
-
-      // level：当前列表对应的标题层级（h2→2, h3→3, h4→4）
-      // list：对应的 <ul> DOM 元素
-      const stack = [{ level: 1, list: tocList }];
-
-      headings.forEach((heading) => {
-        const level = Number(heading.tagName[1]);
-        // console.log(heading.tagName);
-        // console.log(heading.tagName[1]);
-        // console.log(heading.id);
-        if (!heading.id) heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, "-");
-        // console.log(heading.id);
-
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = `#${heading.id}`;
-        a.textContent = heading.textContent;
-        a.style.textDecoration = "none";
-        a.style.color = "black";
-        // console.log(a)
-        li.appendChild(a);
-
-        while (stack.length > 0 && stack[stack.length - 1].level >= level) {
-          stack.pop();
-        }
-
-        const parent = stack[stack.length - 1];
-        parent.list.appendChild(li);
-
-        const subList = document.createElement("ul");
-        li.appendChild(subList);
-        stack.push({ level, list: subList });
-      });
-    </script> -->
-
-    <!-- <script>
-      // ===== 极简目录生成 =====
-      const toc = document.querySelector(".TOC");
-      const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4");
-
-      headings.forEach((h, i) => {
-        if (!h.id) h.id = "toc-" + i;
-        const level = h.tagName[1];
-        const a = document.createElement("a");
-        a.href = "#" + h.id;
-        a.textContent = h.textContent;
-        a.style.cssText = `display: block; padding: 4px 0 4px ${(level - 2) * 16}px; color: #333; text-decoration: none; font-size: ${level == 2 ? 15 : 13}px;`;
-        toc.appendChild(a);
-      });
-    </script> -->
-
     <script>
       // ===== 改进版目录生成 =====
       const toc = document.querySelector(".TOC");
