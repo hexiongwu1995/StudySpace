@@ -247,7 +247,7 @@
       });
     </script> -->
 
-    <script>
+    <!-- <script>
       // ===== 极简目录生成 =====
       const toc = document.querySelector(".TOC");
       const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4");
@@ -260,6 +260,42 @@
         a.textContent = h.textContent;
         a.style.cssText = `display: block; padding: 4px 0 4px ${(level - 2) * 16}px; color: #333; text-decoration: none; font-size: ${level == 2 ? 15 : 13}px;`;
         toc.appendChild(a);
+      });
+    </script> -->
+
+    <script>
+      // ===== 改进版目录生成 =====
+      const toc = document.querySelector(".TOC");
+      const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4, .MainContent h5, .MainContent h6");
+      const stack = [{ level: 1, list: document.createElement("ul") }];
+      toc.appendChild(stack[0].list);
+
+      headings.forEach((heading, i) => {
+        const level = Number(heading.tagName[1]);
+        // 语义化 ID + 索引兜底防冲突
+        if (!heading.id) {
+          const base = heading.textContent
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^\w-\u4e00-\u9fff]/g, "");
+          heading.id = base || `toc-${i}`;
+        }
+
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent;
+        a.style.textDecoration = "none";
+        a.style.color = "#333";
+        li.appendChild(a);
+
+        while (stack.length > 0 && stack[stack.length - 1].level >= level) stack.pop();
+        stack[stack.length - 1].list.appendChild(li);
+
+        const subList = document.createElement("ul");
+        li.appendChild(subList);
+        stack.push({ level, list: subList });
       });
     </script>
   </body>
