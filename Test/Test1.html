@@ -32,7 +32,7 @@
       background-color: var(--BodyContainer-bg);
       border: 1px solid var(--BodyContainer-border);
       border-radius: 16px;
-      overflow: hidden;
+      /* overflow: hidden; */
     }
 
     .Aside {
@@ -68,6 +68,9 @@
       border-bottom: 1px solid var(--TopMenu-border);
       gap: 20px;
       padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .MenuButton {
