@@ -266,8 +266,8 @@
           .trim()
           .toLowerCase()
           .replace(/\s+/g, "-")
-          .replace(/[^\w\u4e00-\u9fff-]/g, "");
-          heading.id = `${base}_toc_${i}`;
+          .replace(/[^\w\u4e00-\u9fff\-]/g, "");
+        heading.id = `${base}_toc_${i}`;
       }
 
       const li = document.createElement("li");
@@ -286,6 +286,15 @@
       const subList = document.createElement("ol");
       li.appendChild(subList);
       stack.push({ level, list: subList });
+    });
+  </script>
+
+  <script>
+    // 清理所有空的ol（可选）
+    document.querySelectorAll(".TOC ol").forEach(ol => {
+      if (ol.children.length === 0) {
+        ol.remove();
+      }
     });
   </script>
 </body>
