@@ -24,7 +24,7 @@
 
     .BodyContainer {
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 0px 1fr;
       grid-template-rows: 60px 1fr;
       grid-template-areas:
         "Aside TopMenu"
@@ -243,7 +243,7 @@
     // Toggle Aside Panel
     const toggle = document.getElementById("Toggle");
     const bodyContainer = document.querySelector(".BodyContainer");
-    let isCollapsed = false;
+    let isCollapsed = true;
 
     toggle.addEventListener("click", () => {
       bodyContainer.style.gridTemplateColumns = isCollapsed ? "300px 1fr" : "0 1fr";
