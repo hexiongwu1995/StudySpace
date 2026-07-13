@@ -7,7 +7,6 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-
     <style>
       html {
         font-family: Arial, "KaiTi", sans-serif;
@@ -117,7 +116,7 @@
           <h3>历史上引入黑体辐射概念的原因</h3>
           <p>黑体辐射（Blackbody Radiation）这一概念的引入，并非出于纯粹的理论兴趣，而是源于19世纪工业革命背景下对热辐射现象的实验需求与理论解释之间的深刻矛盾。其历史动因可归纳为以下几个关键方面。</p>
 
-          <h3>黑体辐射与物质热辐射的本质</h3>
+          <h4>黑体辐射与物质热辐射的本质</h4>
           <p>热辐射是指实际物体由于其内部带电粒子（主要是电子）的热运动而发射出的电磁波。所有温度高于绝对零度的物体都会发出热辐射。</p>
 
           <h3>各向同性的均匀辐射场</h3>
@@ -136,7 +135,7 @@
         </section>
 
         <section>
-          <h2>光电效应1905与康普顿散射实验1923</h2>
+          <h2>光电效应1905</h2>
           <p>在1905-1906年那段成果极为丰硕的时期，爱因斯坦不仅提出了他的热容理论和狭义相对论，还抽时间对现代物理学做出了另一项根本性贡献。他的成就是将普朗克的量子假说与光电效应（photoelectric effect）现象联系起来。光电效应是指金属暴露在紫外辐射下时会发射电子。</p>
 
           <h3>康普顿效应公式的证明</h3>
@@ -200,19 +199,69 @@
         isCollapsed = !isCollapsed;
       });
     </script>
-    <script>
-      // ===== 极简目录生成 =====
-      const toc = document.querySelector(".TOC");
-      const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4");
 
-      headings.forEach((h, i) => {
-        if (!h.id) h.id = "toc-" + i;
-        const level = h.tagName[1];
-        const a = document.createElement("a");
-        a.href = "#" + h.id;
-        a.textContent = h.textContent;
-        a.style.cssText = `display: block; padding: 4px 0 4px ${(level - 2) * 16}px; color: #333; text-decoration: none; font-size: ${level == 2 ? 15 : 13}px;`;
-        toc.appendChild(a);
+    <!-- <script>
+      // ===== 极简目录生成，只需要h2, h3和h4内容 =====
+      const TOC = document.querySelector(".TOC");
+      const H2 = document.querySelectorAll(".MainContent h2");
+      const H2_length = H2.length;
+      console.log(H2);
+      console.log(typeof(H2));
+      H2.forEach(it => {
+        const div = document.createElement("div");
+        div.className = "H2";
+        div.textContent = it.textContent;
+        TOC.appendChild(div);
+        console.log(it.innerHTML);
+      });
+    </script> -->
+    <script>
+      // ===== 带层级结构的目录生成 =====
+      const TOC = document.querySelector(".TOC");
+      const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4, .MainContent h5");
+
+      console.log(headings);
+      let currentH2Div = null; // 当前 h2 的容器
+
+      headings.forEach((heading) => {
+        const tag = heading.tagName; // "H2", "H3", "H4"
+
+        console.log(tag, heading.textContent);
+        if (tag === "H2") {
+          // 新建 h2 条目
+          const div = document.createElement("div");
+          div.className = "H2";
+          div.textContent = heading.textContent;
+          div.style.fontSize = "0.9rem";
+          TOC.appendChild(div);
+          currentH2Div = div;
+        } else if (tag === "H3" && currentH2Div) {
+          // 在当前的 h2 下嵌入 h3
+          const div = document.createElement("div");
+          div.className = "H3";
+          div.textContent = heading.textContent;
+          div.style.marginLeft = "10px"; // 缩进表示层级
+          div.style.fontSize = "0.8rem";
+          currentH2Div.appendChild(div);
+        } else if (tag === "H4" && currentH2Div) {
+          // 在当前的 h2 下嵌入 h4
+          const div = document.createElement("div");
+          div.className = "H4";
+          div.textContent = heading.textContent;
+          div.style.marginLeft = "20px"; // 更深缩进
+          div.style.fontSize = "0.7rem";
+          div.style.color = "#666";
+          currentH2Div.appendChild(div);
+        } else if (tag === "H5" && currentH2Div) {
+          // 在当前的 h2 下嵌入 h5
+          const div = document.createElement("div");
+          div.className = "H5";
+          div.textContent = heading.textContent;
+          div.style.marginLeft = "30px"; // 更深缩进
+          div.style.fontSize = "0.6rem";
+          div.style.color = "#666";
+          currentH2Div.appendChild(div);
+        }
       });
     </script>
   </body>
