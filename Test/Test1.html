@@ -103,14 +103,14 @@
         <h1>量子化学起源历史简介</h1>
 
         <section>
-          <h2>简介</h2>
+          <h2>简 介</h2>
           <p>1900年：普朗克提出能量量子化假说</p>
           <p>事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（"量子"）发射或吸收</p>
           <p>意义：标志量子理论的诞生。</p>
         </section>
 
         <section>
-          <h2>黑体辐射1900</h2>
+          <h2>黑体辐射 1900</h2>
           <p>当普朗克将自己的假设付诸实施时，他推导出了如今被称为普朗克分布（Planck distribution）的黑体辐射谱态密度公式：$$\displaystyle \rho_R(\lambda) = \frac{8\pi hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}$$</p>
 
           <h3>历史上引入黑体辐射概念的原因</h3>
@@ -200,53 +200,66 @@
       });
     </script>
 
-    <script>
-      // ===== 带层级结构的目录生成 =====
-      const TOC = document.querySelector(".TOC");
-      const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4, .MainContent h5");
+    <!-- <script>
+      // ===== 目录生成 =====
+      const toc = document.querySelector(".TOC");
+      const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4");
 
-      console.log(headings);
-      let currentH2Div = null; // 当前 h2 的容器
+      headings.forEach((h,i) => {
+        console.log(h,i);
+      });
+      // console.log(headings[0]);
+      // console.log(typeof(headings[0]));
+      const tocList = document.createElement("ul");
+      toc.appendChild(tocList);
+
+      // level：当前列表对应的标题层级（h2→2, h3→3, h4→4）
+      // list：对应的 <ul> DOM 元素
+      const stack = [{ level: 1, list: tocList }];
 
       headings.forEach((heading) => {
-        const tag = heading.tagName; // "H2", "H3", "H4"
+        const level = Number(heading.tagName[1]);
+        // console.log(heading.tagName);
+        // console.log(heading.tagName[1]);
+        // console.log(heading.id);
+        if (!heading.id) heading.id = heading.textContent.trim().toLowerCase().replace(/\s+/g, "-");
+        // console.log(heading.id);
 
-        console.log(tag, heading.textContent);
-        if (tag === "H2") {
-          // 新建 h2 条目
-          const div = document.createElement("div");
-          div.className = "H2";
-          div.textContent = heading.textContent;
-          div.style.fontSize = "0.9rem";
-          TOC.appendChild(div);
-          currentH2Div = div;
-        } else if (tag === "H3" && currentH2Div) {
-          // 在当前的 h2 下嵌入 h3
-          const div = document.createElement("div");
-          div.className = "H3";
-          div.textContent = heading.textContent;
-          div.style.marginLeft = "10px"; // 缩进表示层级
-          div.style.fontSize = "0.8rem";
-          currentH2Div.appendChild(div);
-        } else if (tag === "H4" && currentH2Div) {
-          // 在当前的 h2 下嵌入 h4
-          const div = document.createElement("div");
-          div.className = "H4";
-          div.textContent = heading.textContent;
-          div.style.marginLeft = "20px"; // 更深缩进
-          div.style.fontSize = "0.7rem";
-          div.style.color = "#666";
-          currentH2Div.appendChild(div);
-        } else if (tag === "H5" && currentH2Div) {
-          // 在当前的 h2 下嵌入 h5
-          const div = document.createElement("div");
-          div.className = "H5";
-          div.textContent = heading.textContent;
-          div.style.marginLeft = "30px"; // 更深缩进
-          div.style.fontSize = "0.6rem";
-          div.style.color = "#666";
-          currentH2Div.appendChild(div);
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent;
+        a.style.textDecoration = "none";
+        a.style.color = "black";
+        // console.log(a)
+        li.appendChild(a);
+
+        while (stack.length > 0 && stack[stack.length - 1].level >= level) {
+          stack.pop();
         }
+
+        const parent = stack[stack.length - 1];
+        parent.list.appendChild(li);
+
+        const subList = document.createElement("ul");
+        li.appendChild(subList);
+        stack.push({ level, list: subList });
+      });
+    </script> -->
+
+    <script>
+      // ===== 极简目录生成 =====
+      const toc = document.querySelector(".TOC");
+      const headings = document.querySelectorAll(".MainContent h2, .MainContent h3, .MainContent h4");
+
+      headings.forEach((h, i) => {
+        if (!h.id) h.id = "toc-" + i;
+        const level = h.tagName[1];
+        const a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = h.textContent;
+        a.style.cssText = `display: block; padding: 4px 0 4px ${(level - 2) * 16}px; color: #333; text-decoration: none; font-size: ${level == 2 ? 15 : 13}px;`;
+        toc.appendChild(a);
       });
     </script>
   </body>
