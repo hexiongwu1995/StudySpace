@@ -267,7 +267,7 @@
           .toLowerCase()
           .replace(/\s+/g, "-")
           .replace(/[^\w\u4e00-\u9fff-]/g, "");
-        heading.id = base || `toc-${i}`;
+          heading.id = `${base}_toc_${i}`;
       }
 
       const li = document.createElement("li");
