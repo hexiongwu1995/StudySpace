@@ -33,6 +33,7 @@
       border: 1px solid var(--BodyContainer-border);
       border-radius: 16px;
       overflow: hidden;
+      height: 100vh;
     }
 
     .Aside {
@@ -43,7 +44,8 @@
       /* align-content: flex-start; */
       justify-items: center;
       background-color: var(--Aside-bg);
-      overflow: hidden;
+      overflow-y: auto;
+      min-height: 0;
     }
 
     .TOC {
@@ -55,6 +57,7 @@
       overflow-y: auto;
       padding: 40px 10px 40px 0;
       font-size: 12px;
+      line-height: 2;
     }
 
     .TopMenu {
@@ -68,6 +71,9 @@
       border-bottom: 1px solid var(--TopMenu-border);
       gap: 20px;
       padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .MenuButton {
@@ -91,6 +97,8 @@
       display: block;
       background-color: var(--MainContent-bg);
       padding: 0 20px;
+      overflow-y: auto;
+      min-height: 0;
     }
 
     #Toggle {
