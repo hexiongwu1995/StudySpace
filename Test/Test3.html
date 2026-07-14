@@ -11,7 +11,7 @@
     <style>
         :root {
             /* 尺寸变量 */
-            --AsideWidth: 220px;
+            --AsideWidth: 260px;
             --HeaderHeight: 60px;
             /* 背景颜色 */
             --Body-bg: #ffffff;
@@ -52,7 +52,8 @@
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template-columns: var(--AsideWidth) 1fr;
+            /* 这里的 1fr 是一个min-width吗？ */
+            grid-template-columns: var(--AsideWidth) minmax(0, 1fr);
             grid-template-rows: var(--HeaderHeight) 1fr;
             grid-template-areas:
                 "Aside TopMenu"
@@ -83,6 +84,7 @@
             padding: 0 10px;
             background-color: var(--TopMenu-bg);
             border-bottom: 1px solid var(--TopMenu-border);
+            /* overflow: hidden; */
         }
 
         .MenuButton {
@@ -91,15 +93,18 @@
             color: #333;
         }
 
-        #HomePage, #Theme, #Print, #GitHub {
-            margin: 0 8px;
+        .link {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+            /* overflow: hidden; */
         }
 
         .MainContent {
             grid-area: MainContent;
             background-color: var(--MainContent-bg);
         }
-
     </style>
 </head>
 
@@ -113,10 +118,10 @@
         <div class="TopMenu">
             <button class="MenuButton" id="Toggle"><i class="fa-solid fa-bars"></i></button>
             <div class="link">
-                <a class="MenuButton" id="HomePage" href="#"><i class="fa-solid fa-house"></i></a>
-                <a class="MenuButton" id="Theme"><i class="fa-solid fa-paintbrush"></i></a>
-                <a class="MenuButton" id="Print"><i class="fa-solid fa-print"></i></a>
-                <a class="MenuButton" id="GitHub"><i class="fa-brands fa-github"></i></a>
+                <div class="MenuButton" id="HomePage" href="#"><i class="fa-solid fa-house"></i></div>
+                <div class="MenuButton" id="Theme"><i class="fa-solid fa-paintbrush"></i></div>
+                <div class="MenuButton" id="Print"><i class="fa-solid fa-print"></i></div>
+                <div class="MenuButton" id="GitHub"><i class="fa-brands fa-github"></i></div>
             </div>
 
         </div>
@@ -140,7 +145,38 @@
         </div>
     </div>
 
+    <script>
+        window.addEventListener('load', () => {
+            const bodyContainer = document.querySelector('.BodyContainer');
 
+            console.log('BodyContainer.scrollWidth:', bodyContainer.scrollWidth);
+            console.log('BodyContainer.clientWidth:', bodyContainer.clientWidth);
+            console.log('BodyContainer.offsetWidth:', bodyContainer.offsetWidth);
+
+            console.log('document.documentElement.scrollWidth:', document.documentElement.scrollWidth);
+            console.log('document.documentElement.clientWidth:', document.documentElement.clientWidth);
+            console.log('document.body.scrollWidth:', document.body.scrollWidth);
+        });
+    </script>
+
+    <script>
+        console.log([...document.querySelectorAll('*')]
+            .filter(el => el.scrollWidth > el.clientWidth)
+            .map(el => ({
+                selector: el.tagName.toLowerCase() + (el.className ? '.' + el.className.replace(/\s+/g, '.') : ''),
+                scrollWidth: el.scrollWidth,
+                clientWidth: el.clientWidth,
+                overflow: el.scrollWidth - el.clientWidth
+            })))
+    </script>
+
+    <div class="Intro" style="margin-top:20px;">
+        scrollWidth 是什么？<br><br>
+        scrollWidth 表示元素内部内容的总宽度， 它包括可见内容 + 不可见溢出的内容<br>
+        与 clientWidth 不同，clientWidth 只包含可见区域宽度（padding 内部，不含滚动条宽度）<br>
+        offsetWidth 则包含元素边框和滚动条（如果有）<br>
+        如果： el.scrollWidth > el.clientWidth 说明该元素有横向溢出。<br>
+    </div>
 </body>
 
 </html>
