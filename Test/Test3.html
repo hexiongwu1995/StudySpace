@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>html元素溢出问题分析</title>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
     <style>
         :root {
             /* 尺寸变量 */
-            --AsideWidth: 260px;
+            --AsideWidth: 60px;
             --HeaderHeight: 60px;
             /* 背景颜色 */
             --Body-bg: #ffffff;
@@ -123,60 +123,97 @@
                 <div class="MenuButton" id="Print"><i class="fa-solid fa-print"></i></div>
                 <div class="MenuButton" id="GitHub"><i class="fa-brands fa-github"></i></div>
             </div>
-
         </div>
         <div class="MainContent">
-            <h1>量子化学起源历史简介</h1>
-
+            <h1>html元素溢出问题分析</h1>
             <section>
-                <h2>简 介</h2>
-                <p>1900年：普朗克提出能量量子化假说</p>
-                <p>
-                    事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（"量子"）发射或吸收。
-                </p>
-                <p>意义：标志量子理论的诞生。</p>
+                <div class="Intro" style="margin-top:20px;">
+                    <h2>HTML / CSS 元素溢出核心知识</h2>
+                    <p>
+                        元素溢出通常是指子元素内容尺寸超出父元素可见区域，最常见的表现是横向滚动条或内容被截断。HTML/CSS 中的溢出由 `overflow` 属性控制，常见取值有
+                        `visible`、`hidden`、`scroll`、`auto`，并可分别设置 `overflow-x` 和
+                        `overflow-y`。当一个块级容器没有明确宽度或高度时，子内容会根据默认规则继续扩展，导致父容器或页面出现溢出。
+                    </p>
+                    <p>
+                        常见溢出原因包括：固定宽度加上过长文本、图片或按钮；内边距、边框、外边距未考虑在总宽度内；Flexbox/Grid 布局中的 `min-width:auto` 或
+                        `flex-shrink:0`；以及 `white-space:nowrap`、`overflow-wrap:normal` 等属性使文本不换行。特别是 `display:flex`
+                        时，子元素默认不收缩，容易把父容器撑开。
+                    </p>
+                    <p>
+                        判断溢出时常用 `scrollWidth`、`clientWidth`、`offsetWidth`：`scrollWidth` 包含内容的实际宽度（包括不可见部分），`clientWidth`
+                        是内容区宽度加内边距但不含滚动条，`offsetWidth` 则包含边框和滚动条。若 `scrollWidth > clientWidth`，说明存在横向溢出。
+                    </p>
+                    <p>
+                        处理溢出问题的方法通常包括：给容器加 `max-width:100%` 或 `width:100%`；使用 `box-sizing:border-box` 让 padding/border
+                        计入总宽度；对文本使用 `overflow-wrap:break-word` 或 `word-break:break-all`；对图像和表格设置 `max-width:100%;
+                        height:auto;`；对弹性布局元素设置 `min-width:0`、`flex-shrink:1`。
+                    </p>
+                    <p>
+                        另外，要注意溢出滚动条出现的位置：如果父元素本身没有 `overflow` 约束，则子元素溢出会传递到文档流，最终在浏览器页面底部出现全局滚动条；如果父元素设置了
+                        `overflow:auto` 或 `overflow:hidden`，则溢出会在该父元素内部处理。了解这一点可以帮你快速定位是局部容器问题还是整个页面布局问题。
+                    </p>
+                </div>
             </section>
             <section>
-                <h2>黑体辐射 1900</h2>
-                <!-- <p>当普朗克将自己的假设付诸实施时，他推导出了如今被称为普朗克分布（Planck distribution）的黑体辐射谱态密度公式：$$\displaystyle \rho_R(\lambda) =
-                    \frac{8\pi
-                    hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}$$</p> -->
+                <div class="Intro" style="margin-top:20px;">
+                    <h2>scrollWidth 是什么？</h2>
+                    scrollWidth 表示元素内部内容的总宽度， 它包括可见内容 + 不可见溢出的内容<br>
+                    与 clientWidth 不同，clientWidth 只包含可见区域宽度（padding 内部，不含滚动条宽度）<br>
+                    offsetWidth 则包含元素边框和滚动条（如果有）<br>
+                    如果： el.scrollWidth > el.clientWidth 说明该元素有横向溢出。<br>
+                </div>
+                <p>
+                    div.TopMenu中的内容宽度超过了div.TopMenu的可见宽度，导致横向溢出。<br>
+                    为什么滚动条不是出现在div.TopMenu中，而是出现在整个页面的底部？<br>
+                </p>
             </section>
         </div>
     </div>
 
     <script>
-        window.addEventListener('load', () => {
-            const bodyContainer = document.querySelector('.BodyContainer');
-
-            console.log('BodyContainer.scrollWidth:', bodyContainer.scrollWidth);
-            console.log('BodyContainer.clientWidth:', bodyContainer.clientWidth);
-            console.log('BodyContainer.offsetWidth:', bodyContainer.offsetWidth);
-
-            console.log('document.documentElement.scrollWidth:', document.documentElement.scrollWidth);
-            console.log('document.documentElement.clientWidth:', document.documentElement.clientWidth);
-            console.log('document.body.scrollWidth:', document.body.scrollWidth);
-        });
-    </script>
-
-    <script>
         console.log([...document.querySelectorAll('*')]
             .filter(el => el.scrollWidth > el.clientWidth)
+            // 这个 { ... } 整体是一个对象
             .map(el => ({
                 selector: el.tagName.toLowerCase() + (el.className ? '.' + el.className.replace(/\s+/g, '.') : ''),
                 scrollWidth: el.scrollWidth,
                 clientWidth: el.clientWidth,
                 overflow: el.scrollWidth - el.clientWidth
-            })))
+            })));
+        // 等价于
+        // .map(el => {
+        //     return {
+        //         selector: el.tagName.toLowerCase() + (el.className ? '.' + el.className.replace(/\s+/g, '.') : ''),
+        //         scrollWidth: el.scrollWidth,
+        //         clientWidth: el.clientWidth,
+        //         overflow: el.scrollWidth - el.clientWidth
+        //     };
+        // }));
     </script>
 
-    <div class="Intro" style="margin-top:20px;">
-        scrollWidth 是什么？<br><br>
-        scrollWidth 表示元素内部内容的总宽度， 它包括可见内容 + 不可见溢出的内容<br>
-        与 clientWidth 不同，clientWidth 只包含可见区域宽度（padding 内部，不含滚动条宽度）<br>
-        offsetWidth 则包含元素边框和滚动条（如果有）<br>
-        如果： el.scrollWidth > el.clientWidth 说明该元素有横向溢出。<br>
-    </div>
+    <script>
+        window.addEventListener('load', () => {
+            const TopMenu = document.querySelector('.TopMenu');
+
+            console.log('TopMenu.scrollWidth:', TopMenu.scrollWidth);
+            console.log('TopMenu.clientWidth:', TopMenu.clientWidth);
+            console.log('TopMenu.offsetWidth:', TopMenu.offsetWidth);
+
+            const bodyContainer = document.querySelector('.BodyContainer');
+            console.log('BodyContainer.scrollWidth:', bodyContainer.scrollWidth);
+            console.log('BodyContainer.clientWidth:', bodyContainer.clientWidth);
+            console.log('BodyContainer.offsetWidth:', bodyContainer.offsetWidth);
+
+            console.log('document.body.scrollWidth:', document.body.scrollWidth);
+            console.log('document.body.clientWidth:', document.body.clientWidth);
+            console.log('document.body.offsetWidth:', document.body.offsetWidth);
+
+            console.log('document.documentElement.scrollWidth:', document.documentElement.scrollWidth);
+            console.log('document.documentElement.clientWidth:', document.documentElement.clientWidth);
+            console.log('document.documentElement.offsetWidth:', document.documentElement.offsetWidth);
+
+        });
+    </script>
 </body>
 
 </html>
