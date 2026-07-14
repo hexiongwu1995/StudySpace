@@ -20,9 +20,13 @@
       --Text-color: #333;
     }
 
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+    }
+
+    body {
       color: var(--Text-color);
       font-family: Arial, "KaiTi", sans-serif;
       line-height: 1.2;
@@ -31,16 +35,21 @@
     .BodyContainer {
       display: grid;
       grid-template-columns: 0 1fr;
-      grid-template-rows: 60px 1fr;
+      grid-template-rows: 60px minmax(0, 1fr);
       grid-template-areas:
         "Aside TopMenu"
         "Aside MainContent";
       background-color: var(--BodyContainer-bg);
+      height: 100%;
+      min-height: 0;
     }
 
     .Aside {
       grid-area: Aside;
       background-color: var(--Aside-bg);
+      overscroll-behavior: contain;
+      overflow-y: auto;
+      min-height: 0;
     }
 
     .TOC {
@@ -49,8 +58,9 @@
       line-height: 1.6;
       overflow-x: hidden;
       overflow-y: auto;
-      position: sticky;
-      top: 0;
+      /* position: sticky;
+      top: 0; */
+
     }
 
     .TopMenu {
@@ -64,8 +74,8 @@
       border-bottom: 1px solid var(--TopMenu-border);
       gap: 20px;
       padding: 10px;
-      position: sticky;
-      top: 0;
+      /* position: sticky;
+      top: 0; */
       z-index: 100;
     }
 
@@ -85,11 +95,14 @@
 
     .MainContent {
       max-width: 700px;
-      margin: 20px auto;
+      margin: 0 auto;
       grid-area: MainContent;
       display: block;
       background-color: var(--MainContent-bg);
-      padding: 0 20px;
+      padding: 20px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      min-height: 0;
     }
 
     #Toggle {
