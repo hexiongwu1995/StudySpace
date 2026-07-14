@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <style>
+        :root {
+            /* 尺寸变量 */
+            --AsideWidth: 260px;
+            --HeaderHeight: 60px;
+            /* 背景颜色 */
+            --Body-bg: #ffffff;
+            --BodyContainer-bg: #cbaeae;
+            --Aside-bg: #fafafa;
+            --TopMenu-bg: #e8e8e8;
+            --MainContent-bg: #ffffff;
+            --AsideTitle-bg: #e8e8e8;
+            --MenuButton-bg: transparent;
+            /* 边框颜色 */
+            --TopMenu-border: #8b8b8b;
+            /* 字体颜色 */
+            --Text-color: #218dcb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            /* 清除默认的margin 和 padding */
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            color: var(--Text-color);
+        }
+
+        body {
+            width: 100%;
+            padding: 5px;
+            /* padding: 5px; 用于阻止外边距折叠 */
+            background-color: var(--Body-bg);
+        }
+
+        .BodyContainer {
+            /* div.BodyContainer 为什么默认不会继承父级元素的width?
+            因为内容的宽度超过了视口宽度 ?*/
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: var(--AsideWidth) 1fr;
+            grid-template-rows: var(--HeaderHeight) 1fr;
+            grid-template-areas:
+                "Aside TopMenu"
+                "Aside MainContent";
+            justify-content: space-between;
+            align-content: center;
+            justify-items: stretch;
+            align-items: stretch;
+            background-color: var(--BodyContainer-bg);
+            padding: 10px;
+        }
+
+        .Aside {
+            grid-area: Aside;
+            background-color: var(--Aside-bg);
+        }
+
+        .AsideTitle {
+            height: var(--HeaderHeight);
+            background-color: var(--AsideTitle-bg);
+        }
+
+        .TopMenu {
+            grid-area: TopMenu;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            background-color: var(--TopMenu-bg);
+            border-bottom: 1px solid var(--TopMenu-border);
+        }
+
+        .MenuButton {
+            border: none;
+            background-color: var(--MenuButton-bg);
+            color: #333;
+        }
+
+        #HomePage, #Theme, #Print, #GitHub {
+            margin: 0 5px;
+        }
+
+        .MainContent {
+            grid-area: MainContent;
+            background-color: var(--MainContent-bg);
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <div class="BodyContainer">
+        <div class="Aside">
+            <div class="AsideTitle"></div>
+            <div class="TableofContent"></div>
+        </div>
+        <div class="TopMenu">
+            <button class="MenuButton" id="Toggle"><i class="fa-solid fa-bars"></i></button>
+            <div class="link">
+                <a class="MenuButton" id="HomePage" href="#"><i class="fa-solid fa-house"></i></a>
+                <a class="MenuButton" id="Theme"><i class="fa-solid fa-paintbrush"></i></a>
+                <a class="MenuButton" id="Print"><i class="fa-solid fa-print"></i></a>
+                <a class="MenuButton" id="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+
+        </div>
+        <div class="MainContent">
+            <h1>量子化学起源历史简介</h1>
+
+            <section>
+                <h2>简 介</h2>
+                <p>1900年：普朗克提出能量量子化假说</p>
+                <p>
+                    事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（"量子"）发射或吸收。
+                </p>
+                <p>意义：标志量子理论的诞生。</p>
+            </section>
+            <section>
+                <h2>黑体辐射 1900</h2>
+                <p>当普朗克将自己的假设付诸实施时，他推导出了如今被称为普朗克分布（Planck distribution）的黑体辐射谱态密度公式：$$\displaystyle \rho_R(\lambda) =
+                    \frac{8\pi
+                    hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}$$</p>
+            </section>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
