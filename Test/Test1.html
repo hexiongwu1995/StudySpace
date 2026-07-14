@@ -10,8 +10,6 @@
 
   <style>
     html {
-      font-family: Arial, "KaiTi", sans-serif;
-      line-height: 1.2;
       background-color: #ffffff;
       --BodyContainer-bg: #f5f5f5;
       --Aside-bg: #fafafa;
@@ -22,45 +20,34 @@
       --Text-color: #333;
     }
 
+    body {
+      margin: 0;
+      padding: 0;
+      color: var(--Text-color);
+      font-family: Arial, "KaiTi", sans-serif;
+      line-height: 1.2;
+    }
+
     .BodyContainer {
       display: grid;
-      grid-template-columns: 0px 1fr;
+      grid-template-columns: 0 1fr;
       grid-template-rows: 60px 1fr;
       grid-template-areas:
         "Aside TopMenu"
         "Aside MainContent";
       background-color: var(--BodyContainer-bg);
-      border: 1px solid var(--BodyContainer-border);
-      border-radius: 16px;
-      /* overflow: hidden; */
     }
 
     .Aside {
       grid-area: Aside;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      /* align-content: flex-start; */
-      justify-items: center;
       background-color: var(--Aside-bg);
-      /* overflow: hidden; */
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
     }
 
     .TOC {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      /* align-content: flex-start; */
-      justify-items: flex-start;
-      overflow-y: auto;
       padding: 40px 10px 40px 0;
       font-size: 12px;
-      flex: 1 1 auto;
-      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     .TopMenu {
@@ -74,9 +61,6 @@
       border-bottom: 1px solid var(--TopMenu-border);
       gap: 20px;
       padding: 10px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
 
     .MenuButton {
