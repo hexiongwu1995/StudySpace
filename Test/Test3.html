@@ -41,6 +41,8 @@
 
         body {
             width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
             padding: 5px;
             /* padding: 5px; 用于阻止外边距折叠 */
             background-color: var(--Body-bg);
@@ -84,7 +86,7 @@
             padding: 0 10px;
             background-color: var(--TopMenu-bg);
             border-bottom: 1px solid var(--TopMenu-border);
-            /* overflow: hidden; */
+            overflow: hidden;
         }
 
         .MenuButton {
@@ -93,17 +95,40 @@
             color: #333;
         }
 
+        #Toggle {
+            flex-shrink: 1;
+        }
+
+        .link {
+            flex-shrink: 5;
+        }
+
         .link {
             display: flex;
             justify-content: flex-end;
             align-items: center;
             gap: 10px;
-            /* overflow: hidden; */
+            overflow: hidden;
+        }
+
+        #HomePage,
+        #Theme,
+        #Print,
+        #GitHub {
+            flex-shrink: 1;
         }
 
         .MainContent {
             grid-area: MainContent;
             background-color: var(--MainContent-bg);
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -128,44 +153,117 @@
             <h1>html元素溢出问题分析</h1>
             <section>
                 <div class="Intro" style="margin-top:20px;">
-                    <h2>HTML / CSS 元素溢出核心知识</h2>
+                    <h2>一、溢出的定义</h2>
                     <p>
-                        元素溢出通常是指子元素内容尺寸超出父元素可见区域，最常见的表现是横向滚动条或内容被截断。HTML/CSS 中的溢出由 `overflow` 属性控制，常见取值有
-                        `visible`、`hidden`、`scroll`、`auto`，并可分别设置 `overflow-x` 和
-                        `overflow-y`。当一个块级容器没有明确宽度或高度时，子内容会根据默认规则继续扩展，导致父容器或页面出现溢出。
+                        CSS 中的"溢出"（Overflow）是指当元素内部内容的大小超过其容器的内容框（content
+                        box）时，内容超出容器边界显示的现象。通俗地说，就是"装不下了"。溢出可以发生在水平方向（横向溢出）和垂直方向（纵向溢出）。在 CSS 中，<code>overflow</code>
+                        属性控制着当内容溢出时如何处理——是隐藏、裁剪、显示滚动条，还是让内容直接可见地溢出。<br>
+                        <br>
+                        判断一个元素是否发生溢出的常用方法是比较 <code>element.scrollWidth</code> 与 <code>element.clientWidth</code>（横向），或
+                        <code>element.scrollHeight</code> 与 <code>element.clientHeight</code>（纵向）。如果前者大于后者，则说明发生了溢出。
                     </p>
+                </div>
+                <div class="Intro" style="margin-top:20px;">
+                    <h2>二、相关核心概念</h2>
                     <p>
-                        常见溢出原因包括：固定宽度加上过长文本、图片或按钮；内边距、边框、外边距未考虑在总宽度内；Flexbox/Grid 布局中的 `min-width:auto` 或
-                        `flex-shrink:0`；以及 `white-space:nowrap`、`overflow-wrap:normal` 等属性使文本不换行。特别是 `display:flex`
-                        时，子元素默认不收缩，容易把父容器撑开。
+                        要深入理解溢出，需要掌握以下几个关键概念：<br>
+                        <br>
+                        <strong>1. clientWidth / clientHeight</strong> ——
+                        元素可见区域的大小，包含内边距（padding），但不包含边框（border）、滚动条和外边距（margin）。<br>
+                        <strong>2. scrollWidth / scrollHeight</strong> —— 元素内部完整内容的总大小，包括被滚动条隐藏的不可见部分。它是内容"实际需要"的空间。<br>
+                        <strong>3. offsetWidth / offsetHeight</strong> —— 元素在页面上占用的总大小，包含边框和滚动条。<br>
+                        <strong>4. overflow 属性</strong> —— CSS
+                        属性，取值包括：<code>visible</code>（默认值，溢出内容可见）、<code>hidden</code>（溢出内容被裁剪隐藏）、<code>scroll</code>（始终显示滚动条）、<code>auto</code>（浏览器自动决定是否需要滚动条）。<br>
+                        <strong>5. 块级格式化上下文（BFC）</strong> —— 当一个元素建立了 BFC，其内部子元素的溢出不会"穿透"到外部影响父级布局。<br>
+                        <br>
+                        这五个概念共同构成了理解和诊断溢出问题的理论基础。
                     </p>
+                </div>
+                <div class="Intro" style="margin-top:20px;">
+                    <h2>三、溢出的出现原因</h2>
                     <p>
-                        判断溢出时常用 `scrollWidth`、`clientWidth`、`offsetWidth`：`scrollWidth` 包含内容的实际宽度（包括不可见部分），`clientWidth`
-                        是内容区宽度加内边距但不含滚动条，`offsetWidth` 则包含边框和滚动条。若 `scrollWidth > clientWidth`，说明存在横向溢出。
+                        元素溢出的根本原因是"空间不足"，但具体诱因多种多样，常见的有以下几种：<br>
+                        <br>
+                        <strong>（1）固定宽高与内容冲突</strong><br>
+                        当容器设置了固定的 <code>width</code> 或 <code>height</code>，而内部内容的自然尺寸超出该限制时，就会发生溢出。比如本页的
+                        <code>.TopMenu</code> 中，flex 子元素的总宽度超过容器可用宽度，导致横向溢出。<br>
+                        <br>
+                        <strong>（2）长单词或连续无断行文本</strong><br>
+                        一段连续的英文字符或 URL（如
+                        <code>https://very-long-url-without-hyphens.com</code>）不会自动换行，会强制撑开容器，造成溢出。解决方案是使用
+                        <code>word-break: break-all</code> 或 <code>overflow-wrap: break-word</code>。<br>
+                        <br>
+                        <strong>（3）flex 或 grid 布局中的隐式最小尺寸</strong><br>
+                        Flexbox 和 Grid 布局中，子元素的 <code>min-width</code> 默认值为
+                        <code>auto</code>，这意味着子元素会尽可能保留其内容的最小宽度，导致容器被撑开。这就是为什么 Grid 列中使用 <code>minmax(0, 1fr)</code>
+                        而不是单纯的 <code>1fr</code>——前者将最小宽度设为 0，允许子元素缩小到真正需要的大小。<br>
+                        <br>
+                        <strong>（4）内联块级元素或浮动元素</strong><br>
+                        <code>display: inline-block</code> 或浮动元素不会被父级的宽度自动约束，如果它们的宽度总和超过父容器，就会溢出。<br>
+                        <br>
+                        <strong>（5）内容动态变化</strong><br>
+                        通过 JavaScript 动态插入的内容（如长文本、大图片）可能超出容器的设计尺寸，尤其当容器没有设置 <code>max-width</code> 或
+                        <code>overflow</code> 属性时更容易发生。
                     </p>
+                </div>
+                <div class="Intro" style="margin-top:20px;">
+                    <h2>四、溢出问题的解决方案</h2>
                     <p>
-                        处理溢出问题的方法通常包括：给容器加 `max-width:100%` 或 `width:100%`；使用 `box-sizing:border-box` 让 padding/border
-                        计入总宽度；对文本使用 `overflow-wrap:break-word` 或 `word-break:break-all`；对图像和表格设置 `max-width:100%;
-                        height:auto;`；对弹性布局元素设置 `min-width:0`、`flex-shrink:1`。
-                    </p>
-                    <p>
-                        另外，要注意溢出滚动条出现的位置：如果父元素本身没有 `overflow` 约束，则子元素溢出会传递到文档流，最终在浏览器页面底部出现全局滚动条；如果父元素设置了
-                        `overflow:auto` 或 `overflow:hidden`，则溢出会在该父元素内部处理。了解这一点可以帮你快速定位是局部容器问题还是整个页面布局问题。
+                        针对不同的溢出场景，有以下常用解决方案：<br>
+                        <br>
+                        <strong>1. 使用 overflow: hidden 裁剪溢出内容</strong><br>
+                        在容器上设置 <code>overflow: hidden</code> 可以裁剪掉溢出的部分，防止内容破坏布局。但需要注意的是，这只在视觉上隐藏了溢出，该容器本身仍然可能被撑大（即
+                        <code>scrollWidth</code> 仍然大于 <code>clientWidth</code>），且外层容器仍可能受到影响。要彻底阻止外层溢出，通常需要结合 BFC 或
+                        min-width 约束。<br>
+                        <br>
+                        <strong>2. 启用滚动条（overflow: auto / scroll）</strong><br>
+                        如果内容确实需要完整展示，设置 <code>overflow: auto</code> 可以在溢出时自动显示滚动条，让用户通过滚动查看被隐藏的内容。<br>
+                        <br>
+                        <strong>3. 使用 minmax(0, 1fr) 控制 Grid 最小宽度</strong><br>
+                        在 Grid 布局中，使用 <code>minmax(0, 1fr)</code> 替代 <code>1fr</code>，将轨道的最小宽度设为
+                        0，从而允许子元素缩小到真正需要的尺寸，防止因内容撑大导致的溢出。<br>
+                        <br>
+                        <strong>4. 使用 word-break 或 overflow-wrap 处理文本</strong><br>
+                        对于长文本或 URL，设置 <code>word-break: break-all</code> 或 <code>overflow-wrap: break-word</code>
+                        可以让文本在边界处自动换行，避免文本溢出。<br>
+                        <br>
+                        <strong>5. 使用 flex-shrink 允许 flex 子项收缩</strong><br>
+                        在 Flex 布局中，给子项设置 <code>flex-shrink: 1</code>（或更大值）允许它们在空间不足时收缩。本页的 <code>.link</code> 就使用了
+                        <code>flex-shrink: 5</code>，使其在空间紧张时比其他元素收缩得更快。<br>
+                        <br>
+                        <strong>6. 建立 BFC 隔离溢出影响</strong><br>
+                        通过设置 <code>overflow: auto</code>、<code>display: flow-root</code> 或 <code>display: flex</code>
+                        等方式触发 BFC（块级格式化上下文），可以将内部溢出限制在该容器内，防止影响到外层布局。<br>
+                        <br>
+                        <strong>7. 使用 max-width 和百分比宽度</strong><br>
+                        为图片和媒体元素设置 <code>max-width: 100%</code>，确保它们不会超出父容器的宽度。这是防止响应式布局中图片溢出的最常用方法。<br>
+                        <br>
+                        综上所述，解决溢出问题的关键在于：<strong>定位溢出的源头</strong>（通过比较 <code>scrollWidth</code> 和
+                        <code>clientWidth</code>），<strong>分析溢出的原因</strong>（固定尺寸、文本断行、flex/grid
+                        最小宽度等），然后<strong>针对性地选择解决方案</strong>。大多数情况下，溢出不是单一元素的"错误"，而是布局约束与内容需求之间的冲突，需要从整体布局体系的角度来理解和解决。
                     </p>
                 </div>
             </section>
             <section>
                 <div class="Intro" style="margin-top:20px;">
                     <h2>scrollWidth 是什么？</h2>
-                    scrollWidth 表示元素内部内容的总宽度， 它包括可见内容 + 不可见溢出的内容<br>
-                    与 clientWidth 不同，clientWidth 只包含可见区域宽度（padding 内部，不含滚动条宽度）<br>
-                    offsetWidth 则包含元素边框和滚动条（如果有）<br>
-                    如果： el.scrollWidth > el.clientWidth 说明该元素有横向溢出。<br>
+                    <p>
+                        scrollWidth 表示元素内部内容的总宽度， 它包括可见内容 + 不可见溢出的内容<br>
+                        与 clientWidth 不同，clientWidth 只包含可见区域宽度（padding 内部，不含滚动条宽度）<br>
+                        offsetWidth 则包含元素边框和滚动条（如果有）<br>
+                        如果： el.scrollWidth > el.clientWidth 说明该元素有横向溢出。<br>
+                    </p>
                 </div>
-                <p>
-                    div.TopMenu中的内容宽度超过了div.TopMenu的可见宽度，导致横向溢出。<br>
-                    为什么滚动条不是出现在div.TopMenu中，而是出现在整个页面的底部？<br>
-                </p>
+            </section>
+            <section>
+                <div class="Intro" style="margin-top:20px;">
+                    <h2>内层容器溢出导致外层容器也溢出的问题</h2>
+                    <p>
+                        div.TopMenu中的内容宽度超过了div.TopMenu的可见宽度，导致横向溢出。<br>
+                        为什么滚动条不是出现在div.TopMenu中，而是出现在整个页面的底部？<br>
+                    </p>
+                    <p>如果对出现溢出情况的内层容器使用overflow: hidden隐藏，是否能阻止外层容器的溢出？</p>
+                </div>
             </section>
         </div>
     </div>
