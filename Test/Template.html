@@ -27,6 +27,12 @@
             --Text-color: #2c2c2c;
         }
 
+        @media screen and (max-width: 650px) {
+            :root {
+                --AsideWidth: 0px;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -67,8 +73,6 @@
         .Aside {
             grid-area: Aside;
             background-color: var(--Aside-bg);
-            overflow-y: auto;
-            overflow-x: hidden;
         }
 
         .AsideTitle {
@@ -89,8 +93,10 @@
         }
 
         .TableofContent {
-
+            height: calc(100vh - var(--HeaderHeight));
             padding: 20px 0;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .TableofContent li {
@@ -156,8 +162,6 @@
         }
 
         .MainContent {
-            width: 100%;
-            height: 100%;
             grid-area: MainContent;
             background-color: var(--MainContent-bg);
             overflow-x: hidden;
@@ -167,6 +171,7 @@
         .InnerContent {
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         section {
@@ -182,6 +187,7 @@
             min-width: 0;
             /* 用于 flex 项目，防止内容宽度撑开父容器 */
             font-size: 1.2rem;
+            font-weight: bold;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
@@ -227,6 +233,9 @@
     <div class="HiddenContent" style="display: none">
         <section>
             <h1>简介</h1>
+            <p>1900年：普朗克提出能量量子化假说</p>
+            <p>事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（"量子"）发射或吸收。</p>
+            <p>意义：标志量子理论的诞生。</p>
             <h2>简介</h2>
             <p>1900年：普朗克提出能量量子化假说</p>
             <p>事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（"量子"）发射或吸收。</p>
@@ -498,12 +507,23 @@
 
     <script>
         // Aside 面板切换
-        let isAsideVisible = true;
         const Toggle = document.querySelector("#Toggle");
         Toggle.addEventListener("click", () => {
-            document.documentElement.style.setProperty("--AsideWidth", isAsideVisible ? "0px" : "260px");
-            isAsideVisible = !isAsideVisible;
+            const root = document.documentElement;
+            const currentWidth = getComputedStyle(root)
+                .getPropertyValue("--AsideWidth")
+                .trim();
+            root.style.setProperty(
+                "--AsideWidth",
+                currentWidth === "260px" ? "0px" : "260px"
+            );
         });
+        // let isAsideVisible = true;
+        // const Toggle = document.querySelector("#Toggle");
+        // Toggle.addEventListener("click", () => {
+        //     document.documentElement.style.setProperty("--AsideWidth", isAsideVisible ? "0px" : "260px");
+        //     isAsideVisible = !isAsideVisible;
+        // });
     </script>
 
     <script>
