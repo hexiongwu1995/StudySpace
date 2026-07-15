@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template</title>
+    <title>量子化学的历史起源</title>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
@@ -34,11 +34,12 @@
             box-sizing: border-box;
         }
 
-        /* 配置方式二 */
-        html, body {
+        html,
+        body {
             width: 100%;
             height: 100%;
             color: var(--Text-color);
+            font-family: 'Arial', 'KaiTi';
         }
 
         body {
@@ -103,9 +104,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 10px;
+            padding: 0 2%;
             background-color: var(--TopMenu-bg);
-            border-bottom: 1px solid var(--TopMenu-border);
+            /* border-bottom: 1px solid var(--TopMenu-border); */
             overflow: hidden;
         }
 
@@ -159,16 +160,21 @@
         p {
             margin-bottom: 1rem;
         }
+
+        .title {
+            font-size: 1.5rem;
+            ;
+        }
     </style>
 </head>
 
 
 <body>
     <div class="HiddenContent" style="display: none;">
-        <h1>量子化学起源历史简介</h1>
 
         <section>
-            <h2>简 介</h2>
+            <h1>简介</h1>
+            <h2>简介</h2>
             <p>1900年：普朗克提出能量量子化假说</p>
             <p>
                 事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（"量子"）发射或吸收。
@@ -278,6 +284,9 @@
         </div>
         <div class="TopMenu">
             <button class="MenuButton" id="Toggle"><i class="fa-solid fa-bars"></i></button>
+            <div class="title">
+                <script>document.write(document.querySelector('title').innerHTML)</script>
+            </div>
             <div class="link">
                 <div class="MenuButton" id="HomePage" href="#"><i class="fa-solid fa-house"></i></div>
                 <div class="MenuButton" id="Theme"><i class="fa-solid fa-paintbrush"></i></div>
@@ -354,16 +363,16 @@
         HiddenContent.remove();
 
         // 层级目录 (Table of Content) 生成算法
-        const headings = MainContent.querySelectorAll('h2, h3, h4');
-        const TOC = document.getElementsByClassName('TableofContent')[0];
+        const headings = MainContent.querySelectorAll('h1, h2, h3, h4');
+        const TOC = document.querySelector('.TableofContent');
         TOC.innerHTML = ''; // 先清空旧目录
-        const stack = [{ level: 1, list: document.createElement('ol') }];
+        const stack = [{ level: 0, list: document.createElement('ol') }];
         const list = stack[stack.length - 1].list;
         TOC.appendChild(list);
         headings.forEach(
             (heading, index) => {
                 const level = Number(heading.tagName[1]);
-                console.log(heading.textContent);
+                // console.log(heading.textContent);
                 const base = heading.textContent.trim().replace(/\s+/g, '_').replace(/[^\w\u4e00-\u9fff\-]/g, '_');
                 if (!heading.id) {
                     heading.id = `${base}_${index}`;
@@ -372,7 +381,6 @@
                 const a = document.createElement('a');
                 a.href = `#${heading.id}`;
                 a.textContent = heading.textContent;
-                // a.style.textDecoration = 'none';
                 li.appendChild(a);
                 while (level <= stack[stack.length - 1].level) {
                     stack.pop();
