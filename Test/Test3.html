@@ -11,7 +11,7 @@
     <style>
         :root {
             /* 尺寸变量 */
-            --AsideWidth: 60px;
+            --AsideWidth: 0px;
             --HeaderHeight: 60px;
             /* 背景颜色 */
             --Body-bg: #ffffff;
@@ -76,6 +76,14 @@
             background-color: var(--AsideTitle-bg);
         }
 
+        .TableofContent {
+            overflow: auto;
+        }
+        .TableofContent a {
+            text-decoration: none;
+            color: var(--Text-color);
+        }
+
         .TopMenu {
             grid-area: TopMenu;
             display: flex;
@@ -122,6 +130,7 @@
             background-color: var(--MainContent-bg);
             max-width: 800px;
             margin: 0 auto;
+            padding: 15px;
         }
 
         section {
@@ -312,6 +321,48 @@
             console.log('document.documentElement.offsetWidth:', document.documentElement.offsetWidth);
 
         });
+    </script>
+
+    <script>
+        // Aside 面板切换
+        const Toggle = document.getElementById('Toggle');
+        let isAsideVisible = false;
+        Toggle.addEventListener('click', () => {
+            document.documentElement.style.setProperty('--AsideWidth', isAsideVisible ? '0' : '260px');
+            isAsideVisible = !isAsideVisible;
+        });
+    </script>
+
+    <script>
+        // Table of Content 生成算法
+        const headings = document.querySelectorAll('h2, h3, h4');
+        const TOC = document.getElementsByClassName('TableofContent')[0];
+        console.log(TOC);
+        const stack = [{ level: 1, list: document.createElement('ol') }];
+        const list = stack[stack.length -1].list;
+        TOC.appendChild(list);
+        headings.forEach(
+            (heading, index) => {
+                const level = Number(heading.tagName[1]);
+                console.log(heading.textContent);
+                const base = heading.textContent.trim().replace(/\s+/g, '_').replace(/[^\w\u4e00-\u9fff\-]/g, '_');
+                if ( heading.id === '' ) {
+                    heading.id = `${base}_${index}`;
+                };
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#${heading.id}`;
+                a.textContent = heading.textContent;
+                // a.style.textDecoration = 'none';
+                li.appendChild(a);
+                while (level <= stack[stack.length - 1].level) {
+                    stack.pop();
+                };
+                stack[stack.length -1].list.appendChild(li);
+                const sublist = document.createElement('ol');
+                li.appendChild(sublist);
+                stack.push({ level: level, list: sublist });
+            })
     </script>
 </body>
 
