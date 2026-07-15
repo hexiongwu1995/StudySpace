@@ -117,6 +117,7 @@
 
         #Toggle {
             flex-shrink: 1;
+            margin-right: 20px;
         }
 
         .link {
@@ -330,25 +331,25 @@
 
     <script>
         // Aside 面板切换
-        const Toggle = document.getElementById('Toggle');
         let isAsideVisible = false;
+        const Toggle = document.querySelector('#Toggle');
         Toggle.addEventListener('click', () => {
-            document.documentElement.style.setProperty('--AsideWidth', isAsideVisible ? '0' : '260px');
+            document.documentElement.style.setProperty('--AsideWidth', isAsideVisible ? '0px' : '260px');
             isAsideVisible = !isAsideVisible;
-        });
+        })
     </script>
 
     <script>
+        // 从 div.HiddenContent中复制内容到div.MainContent中。
         const HiddenContent = document.getElementsByClassName('HiddenContent')[0];
         const MainContent = document.getElementsByClassName('MainContent')[0];
-        MainContent.innerHTML = HiddenContent.innerHTML;    
-    </script>
+        MainContent.innerHTML = HiddenContent.innerHTML;
+        HiddenContent.remove();
 
-    <script>
         // 层级目录 (Table of Content) 生成算法
-        const headings = document.querySelectorAll('h2, h3, h4');
+        const headings = MainContent.querySelectorAll('h2, h3, h4');
         const TOC = document.getElementsByClassName('TableofContent')[0];
-        console.log(TOC);
+        TOC.innerHTML = ''; // 先清空旧目录
         const stack = [{ level: 1, list: document.createElement('ol') }];
         const list = stack[stack.length - 1].list;
         TOC.appendChild(list);
@@ -357,7 +358,7 @@
                 const level = Number(heading.tagName[1]);
                 console.log(heading.textContent);
                 const base = heading.textContent.trim().replace(/\s+/g, '_').replace(/[^\w\u4e00-\u9fff\-]/g, '_');
-                if (heading.id === '') {
+                if (!heading.id) {
                     heading.id = `${base}_${index}`;
                 };
                 const li = document.createElement('li');
@@ -374,6 +375,12 @@
                 li.appendChild(sublist);
                 stack.push({ level: level, list: sublist });
             })
+        // 清理空的ol元素
+        const OLC = TOC.querySelectorAll('ol');
+        OLC.forEach((el, index) => {
+            if (el.children.length === 0) { el.remove(); }
+        })
+
     </script>
 </body>
 
