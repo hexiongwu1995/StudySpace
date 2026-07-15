@@ -11,7 +11,7 @@
     <style>
         :root {
             /* 尺寸变量 */
-            --AsideWidth: 260px;
+            --AsideWidth: 300px;
             --HeaderHeight: 60px;
             /* 背景颜色 */
             --Body-bg: #ffffff;
@@ -94,22 +94,101 @@
 
         .TableofContent {
             height: calc(100vh - var(--HeaderHeight));
-            padding: 20px 0;
+            padding: 10px 0;
             overflow-y: auto;
             overflow-x: hidden;
         }
 
+        /* 章节列表样式 */
+        .TableofContent ol {
+            list-style: outside none none;
+            padding-left: 0;
+        }
+
+        .TableofContent ol.chapter {
+            line-height: 2.2em;
+        }
+
+        .TableofContent ol.section {
+            list-style: outside none none;
+            padding-inline-start: 20px;
+            line-height: 1.9em;
+            margin-block: 0;
+            display: none;
+        }
+
+        /* 展开状态下显示子列表 */
+        .TableofContent li.chapter-item.expanded > ol.section {
+            display: block;
+        }
+
         .TableofContent li {
-            font-size: 0.8rem;
-            line-height: 1.5rem;
-            white-space: nowrap;
-            overflow-x: hidden;
-            text-overflow: ellipsis;
+            line-height: 1.5em;
+            margin-block-start: 0.6em;
+        }
+
+        .TableofContent li.chapter-item {
+            position: relative;
+        }
+
+        /* 链接容器 - 用于并排显示链接和展开按钮 */
+        .chapter-link-wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
         }
 
         .TableofContent a {
             text-decoration: none;
             color: var(--Text-color);
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .TableofContent a:hover {
+            color: #0078d4;
+            font-weight: 500;
+        }
+
+        .TableofContent a.active {
+            color: #0078d4;
+            font-weight: bold;
+        }
+
+        /* 展开/收起按钮 */
+        .chapter-fold-toggle {
+            display: none;
+            flex-shrink: 0;
+            margin-inline-start: auto;
+            padding: 0px 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            opacity: 0.68;
+            transition: transform 0.3s ease;
+        }
+
+        /* 有子章节的项目才显示展开按钮 */
+        .TableofContent li.chapter-item.has-children > .chapter-link-wrapper > .chapter-fold-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* 展开时旋转图标 */
+        .TableofContent li.chapter-item.expanded > .chapter-link-wrapper > .chapter-fold-toggle {
+            transform: rotate(90deg);
+        }
+
+        /* 数字标号 */
+        .chapter-number {
+            font-weight: bold;
+            margin-right: 0.3em;
+            display: inline;
         }
 
         .TopMenu {
@@ -388,7 +467,7 @@
                 .trim();
             root.style.setProperty(
                 "--AsideWidth",
-                currentWidth === "260px" ? "0px" : "260px"
+                currentWidth === "300px" ? "0px" : "300px"
             );
         });
         // let isAsideVisible = true;
@@ -410,12 +489,23 @@
         const headings = InnerContent.querySelectorAll("h1, h2, h3, h4, h5, h6");
         const TOC = document.querySelector(".TableofContent");
         TOC.innerHTML = ""; // 先清空旧目录
-        const stack = [{ level: 0, list: document.createElement("ol") }];
-        const list = stack[stack.length - 1].list;
-        TOC.appendChild(list);
+        
+        // 创建根列表
+        const rootList = document.createElement("ol");
+        rootList.className = "chapter";
+        TOC.appendChild(rootList);
+
+        // 数字计数器 - 用于生成编号
+        const counters = [0, 0, 0, 0, 0, 0]; // h1-h6
+        let lastLevel = 0;
+        
+        // 栈用于追踪列表层级，每个项包含：{level, ol元素, 最后的li元素}
+        const listStack = [{ level: 0, ol: rootList, lastLi: null }];
+
         headings.forEach((heading, index) => {
             const level = Number(heading.tagName[1]);
-            // console.log(heading.textContent);
+            
+            // 生成标题 ID
             const base = heading.textContent
                 .trim()
                 .replace(/\s+/g, "_")
@@ -423,26 +513,109 @@
             if (!heading.id) {
                 heading.id = `${base}_${index}`;
             }
+
+            // 处理计数器
+            if (level < lastLevel) {
+                for (let i = level; i < 6; i++) {
+                    counters[i] = 0;
+                }
+            }
+            if (level > lastLevel) {
+                for (let i = lastLevel + 1; i < level; i++) {
+                    counters[i] = 0;
+                }
+            }
+            counters[level - 1]++;
+
+            // 生成编号字符串
+            let numberStr = "";
+            for (let i = 0; i < level; i++) {
+                numberStr += counters[i] + ".";
+            }
+
+            // 创建列表项
             const li = document.createElement("li");
+            li.className = "chapter-item";
+
+            // 创建链接容器
+            const linkWrapper = document.createElement("span");
+            linkWrapper.className = "chapter-link-wrapper";
+
+            // 创建链接
             const a = document.createElement("a");
             a.href = `#${heading.id}`;
-            a.textContent = heading.textContent;
-            li.appendChild(a);
-            while (level <= stack[stack.length - 1].level) {
-                stack.pop();
+            a.innerHTML = `<span class="chapter-number">${numberStr}</span>${heading.textContent}`;
+
+            linkWrapper.appendChild(a);
+
+            // 创建展开/收起按钮（暂时，后面检查是否有子项）
+            const toggleBtn = document.createElement("a");
+            toggleBtn.className = "chapter-fold-toggle";
+            toggleBtn.href = "javascript:void(0)";
+            toggleBtn.innerHTML = "<div>❱</div>";
+            toggleBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                li.classList.toggle("expanded");
+            });
+
+            linkWrapper.appendChild(toggleBtn);
+            li.appendChild(linkWrapper);
+
+            // 调整列表堆栈：弹出不需要的层级
+            while (level <= listStack[listStack.length - 1].level) {
+                listStack.pop();
             }
-            stack[stack.length - 1].list.appendChild(li);
-            const sublist = document.createElement("ol");
-            li.appendChild(sublist);
-            stack.push({ level: level, list: sublist });
-        });
-        // 清理空的ol元素
-        const OLC = TOC.querySelectorAll("ol");
-        OLC.forEach((el, index) => {
-            if (el.children.length === 0) {
-                el.remove();
+
+            // 获取当前应该添加 li 的 ol 容器
+            let targetOl = listStack[listStack.length - 1].ol;
+
+            // 如果级别增加了，需要在最后一个 li 下创建子 ol
+            if (level > listStack[listStack.length - 1].level) {
+                const parentLi = listStack[listStack.length - 1].lastLi;
+                if (parentLi) {
+                    const newOl = document.createElement("ol");
+                    newOl.className = "section";
+                    parentLi.appendChild(newOl);
+                    targetOl = newOl;
+                    listStack.push({ level: level, ol: newOl, lastLi: null });
+                }
             }
+
+            // 添加当前 li 到目标 ol
+            targetOl.appendChild(li);
+
+            // 更新栈顶的最后一个 li
+            listStack[listStack.length - 1].lastLi = li;
+
+            lastLevel = level;
         });
+
+        // 清理：移除没有子列表的项的展开按钮，标记有子列表的项
+        function cleanupToggles(element) {
+            const items = element.querySelectorAll("li.chapter-item");
+            items.forEach(item => {
+                const sublist = item.querySelector("ol.section");
+                const toggle = item.querySelector(".chapter-fold-toggle");
+                
+                if (sublist && toggle) {
+                    // 这个项有子列表
+                    item.classList.add("has-children");
+                    // 仅默认展开顶级章节（h1 对应）
+                    if (item.parentElement?.classList.contains("chapter")) {
+                        item.classList.add("expanded");
+                    } else {
+                        // 其他级别的默认是收起的
+                        item.classList.remove("expanded");
+                    }
+                } else if (!sublist && toggle) {
+                    // 这个项没有子列表，但有按钮，所以移除按钮
+                    toggle.remove();
+                }
+            });
+        }
+
+        cleanupToggles(TOC);
     </script>
 </body>
 
