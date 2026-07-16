@@ -11,7 +11,7 @@
     <style>
         :root {
             /* 尺寸变量 */
-            --AsideWidth: 300px;
+            --AsideWidth: 350px;
             --HeaderHeight: 60px;
             /* 背景颜色 */
             --Body-bg: #ffffff;
@@ -371,10 +371,11 @@
         </section>
 
         <section>
-            <h2>固体热容1907</h2>
+
+            <h1>固体热容1907</h1>
             <p>1819年，科学看起来有着一种欺骗性的简洁。</p>
 
-            <h3>爱因斯坦热容公式的证明</h3>
+            <h2>爱因斯坦热容公式的证明</h2>
             <p>推导爱因斯坦关于谐振子集合热容的公式。为此，请使用量子力学的结果。</p>
 
             <h3>爱因斯坦热容函数的近似</h3>
@@ -410,6 +411,7 @@
             <h4>爱因斯坦固体的摩尔熵</h4>
             <p>计算爱因斯坦固体的摩尔熵。请对该积分进行数值计算。</p>
         </section>
+
     </div>
     <script>
         console.log(
@@ -467,7 +469,7 @@
                 .trim();
             root.style.setProperty(
                 "--AsideWidth",
-                currentWidth === "300px" ? "0px" : "300px"
+                currentWidth === "350px" ? "0px" : "350px"
             );
         });
         // let isAsideVisible = true;
@@ -563,7 +565,8 @@
             li.appendChild(linkWrapper);
 
             // 调整列表堆栈：弹出不需要的层级
-            while (level <= listStack[listStack.length - 1].level) {
+            // 注意：应该用 < 而不是 <=，因为同级的兄弟项不应该导致弹出
+            while (level < listStack[listStack.length - 1].level) {
                 listStack.pop();
             }
 
@@ -571,7 +574,8 @@
             let targetOl = listStack[listStack.length - 1].ol;
 
             // 如果级别增加了，需要在最后一个 li 下创建子 ol
-            if (level > listStack[listStack.length - 1].level) {
+            // 关键：必须同时满足两个条件：1) 当前 level > lastLevel（级别增加）2) 有父 li
+            if (lastLevel < level) {
                 const parentLi = listStack[listStack.length - 1].lastLi;
                 if (parentLi) {
                     const newOl = document.createElement("ol");
