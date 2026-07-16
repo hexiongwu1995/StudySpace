@@ -519,23 +519,18 @@
 
             // 处理计数器
             if (level < lastLevel) {
-                // 重置比当前级别更深的计数器为 0
                 for (let i = level; i < 6; i++) {
                     counters[i] = 0;
                 }
             } else if (level > lastLevel) {
-                // 重置位于上个级别（不包含）与当前级别(包含)之间的计数器为 0
-                // 这里的循环条件也可以写 i < 6, 但是使用 i < level 更符合逻辑，因为我们只关心到当前级别
-                // 同时，这种写法可以减少不必要的重置操作。
                 for (let i = lastLevel; i < level; i++) {
                     counters[i] = 0;
                 }
             } else {
                 // level === lastLevel，不需要重置
-                // 同级标题，计数器不变
             }
             counters[level - 1]++;
-            console.log(`Level: ${level}, Counters:`, counters);
+            console.log(`Level: ${level}  `, `Counters:`, counters);
             // 生成编号字符串
             let numberStr = "";
             for (let i = 0; i < level; i++) {
@@ -564,8 +559,6 @@
             // toggleBtn.setAttribute("aria-expanded", "false");
             toggleBtn.innerHTML = "❱";
             toggleBtn.addEventListener("click", function(event) {
-                // 在这段代码里，event代表“事件对象”，由浏览器在事件触发时传入?
-                // 当按钮被点击时，浏览器会把一个 MouseEvent 对象传给箭头函数?
                 // event.stopPropagation();
                 const expanded = li.classList.toggle("expanded");
                 toggleBtn.setAttribute("aria-expanded", expanded ? "true" : "false");

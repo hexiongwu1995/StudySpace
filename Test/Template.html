@@ -532,7 +532,24 @@
         const InnerContent = document.querySelector(".InnerContent");
         InnerContent.innerHTML = HiddenContent.innerHTML;
         HiddenContent.remove();
+    </script>
 
+
+    <script>
+        function generateHeadingId(heading, index) {
+            const base = heading.textContent
+                .trim()
+                .replace(/\s+/g, "_")
+                .replace(/[^\w\u4e00-\u9fff\-]/g, "_");
+            if (!heading.id) {
+                heading.id = `${base}_${index}`;
+            }
+        }
+    </script>
+
+
+
+    <script>
         // 层级目录 (Table of Content) 生成算法
         const headings = InnerContent.querySelectorAll("h1, h2, h3, h4, h5, h6");
         const TOC = document.querySelector(".TableofContent");
@@ -542,19 +559,14 @@
         TOC.appendChild(list);
         headings.forEach((heading, index) => {
             const level = Number(heading.tagName[1]);
-            // console.log(heading.textContent);
-            const base = heading.textContent
-                .trim()
-                .replace(/\s+/g, "_")
-                .replace(/[^\w\u4e00-\u9fff\-]/g, "_");
-            if (!heading.id) {
-                heading.id = `${base}_${index}`;
-            }
+            generateHeadingId(heading, index);
             const li = document.createElement("li");
             const a = document.createElement("a");
+
             a.href = `#${heading.id}`;
             a.textContent = heading.textContent;
             li.appendChild(a);
+
             while (level <= stack[stack.length - 1].level) {
                 stack.pop();
             }
@@ -571,6 +583,9 @@
             }
         });
     </script>
+
+
+
 </body>
 
 </html>
