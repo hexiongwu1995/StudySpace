@@ -336,7 +336,7 @@
             <p>当普朗克将自己的假设付诸实施时，他推导出了如今被称为普朗克分布（Planck distribution）的黑体辐射谱态密度公式：$$\displaystyle \rho_R(\lambda) =
                 \frac{8\pi hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}$$</p>
 
-            <h3>历史上引入黑体辐射概念的原因</h3>
+            <h4>历史上引入黑体辐射概念的原因</h4>
             <p>黑体辐射（Blackbody Radiation）这一概念的引入，并非出于纯粹的理论兴趣，而是源于19世纪工业革命背景下对热辐射现象的实验需求与理论解释之间的深刻矛盾。其历史动因可归纳为以下几个关键方面。
             </p>
 
@@ -489,6 +489,7 @@
 
         // 层级目录 (Table of Content) 生成算法
         const headings = InnerContent.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        console.log("headings:", headings);
         const TOC = document.querySelector(".TableofContent");
         TOC.innerHTML = ""; // 先清空旧目录
         
@@ -524,6 +525,8 @@
                 }
             } else if (level > lastLevel) {
                 // 重置位于上个级别（不包含）与当前级别(包含)之间的计数器为 0
+                // 这里的循环条件也可以写 i < 6, 但是使用 i < level 更符合逻辑，因为我们只关心到当前级别
+                // 同时，这种写法可以减少不必要的重置操作。
                 for (let i = lastLevel; i < level; i++) {
                     counters[i] = 0;
                 }
@@ -532,7 +535,7 @@
                 // 同级标题，计数器不变
             }
             counters[level - 1]++;
-
+            console.log(`Level: ${level}, Counters:`, counters);
             // 生成编号字符串
             let numberStr = "";
             for (let i = 0; i < level; i++) {
@@ -554,15 +557,18 @@
 
             linkWrapper.appendChild(a);
 
-            // 创建展开/收起按钮（暂时，后面检查是否有子项）
-            const toggleBtn = document.createElement("a");
+            // 创建展开/收起按钮
+            const toggleBtn = document.createElement("button");
             toggleBtn.className = "chapter-fold-toggle";
-            toggleBtn.href = "javascript:void(0)";
-            toggleBtn.innerHTML = "<div>❱</div>";
-            toggleBtn.addEventListener("click", (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                li.classList.toggle("expanded");
+            // toggleBtn.type = "button";
+            // toggleBtn.setAttribute("aria-expanded", "false");
+            toggleBtn.innerHTML = "❱";
+            toggleBtn.addEventListener("click", function(event) {
+                // 在这段代码里，event代表“事件对象”，由浏览器在事件触发时传入?
+                // 当按钮被点击时，浏览器会把一个 MouseEvent 对象传给箭头函数?
+                // event.stopPropagation();
+                const expanded = li.classList.toggle("expanded");
+                toggleBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
             });
 
             linkWrapper.appendChild(toggleBtn);
