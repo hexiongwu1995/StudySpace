@@ -521,11 +521,13 @@
                 for (let i = level; i < 6; i++) {
                     counters[i] = 0;
                 }
-            }
-            if (level > lastLevel) {
+            } else if (level > lastLevel) {
                 for (let i = lastLevel + 1; i < level; i++) {
                     counters[i] = 0;
                 }
+            } else {
+                // level === lastLevel，不需要重置
+                // 同级标题，计数器不变
             }
             counters[level - 1]++;
 
