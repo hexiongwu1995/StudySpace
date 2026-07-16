@@ -518,11 +518,13 @@
 
             // 处理计数器
             if (level < lastLevel) {
+                // 重置比当前级别更深的计数器为 0
                 for (let i = level; i < 6; i++) {
                     counters[i] = 0;
                 }
             } else if (level > lastLevel) {
-                for (let i = lastLevel + 1; i < level; i++) {
+                // 重置位于上个级别与当前级别(包括当前级别)之间的计数器为 0
+                for (let i = lastLevel; i < level; i++) {
                     counters[i] = 0;
                 }
             } else {
