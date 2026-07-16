@@ -486,8 +486,10 @@
         const InnerContent = document.querySelector(".InnerContent");
         InnerContent.innerHTML = HiddenContent.innerHTML;
         HiddenContent.remove();
+    </script>
 
-        // 层级目录 (Table of Content) 生成算法
+    <script>
+        // 多级目录 (Table of Content) 生成算法
         const headings = InnerContent.querySelectorAll("h1, h2, h3, h4, h5, h6");
         console.log("headings:", headings);
         const TOC = document.querySelector(".TableofContent");
