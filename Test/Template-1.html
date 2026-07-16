@@ -574,8 +574,8 @@
             linkWrapper.appendChild(toggleBtn);
             li.appendChild(linkWrapper);
 
+            console.log("Current level:", level, "List stack:", listStack);
             // 调整列表堆栈：弹出不需要的层级
-            // 注意：应该用 < 而不是 <=，因为同级的兄弟项不应该导致弹出
             while (level < listStack[listStack.length - 1].level) {
                 listStack.pop();
             }
