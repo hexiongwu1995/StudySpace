@@ -118,7 +118,7 @@
         }
 
         /* 展开状态下显示子列表 */
-        .TableofContent li.chapter-item.expanded > ol.section {
+        .TableofContent li.chapter-item.expanded>ol.section {
             display: block;
         }
 
@@ -173,7 +173,7 @@
         }
 
         /* 有子章节的项目才显示展开按钮 */
-        .TableofContent li.chapter-item.has-children > .chapter-link-wrapper > .chapter-fold-toggle {
+        .TableofContent li.chapter-item.has-children>.chapter-link-wrapper>.chapter-fold-toggle {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -182,7 +182,7 @@
         }
 
         /* 展开时旋转图标 */
-        .TableofContent li.chapter-item.expanded > .chapter-link-wrapper > .chapter-fold-toggle {
+        .TableofContent li.chapter-item.expanded>.chapter-link-wrapper>.chapter-fold-toggle {
             transform: rotate(90deg);
         }
 
@@ -496,7 +496,7 @@
         console.log("headings:", headings);
         const TOC = document.querySelector(".TableofContent");
         TOC.innerHTML = ""; // 先清空旧目录
-        
+
         // 创建根列表
         const rootList = document.createElement("ol");
         rootList.className = "chapter";
@@ -505,13 +505,13 @@
         // 数字计数器 - 用于生成编号
         const counters = [0, 0, 0, 0, 0, 0]; // h1-h6
         let lastLevel = 0;
-        
+
         // 栈用于追踪列表层级，每个项包含：{level, ol元素, 最后的li元素}
         const listStack = [{ level: 0, ol: rootList, lastLi: null }];
 
         headings.forEach((heading, index) => {
             const level = Number(heading.tagName[1]);
-            
+
             // 生成标题 ID
             const base = heading.textContent
                 .trim()
@@ -562,7 +562,7 @@
             // toggleBtn.type = "button";
             // toggleBtn.setAttribute("aria-expanded", "false");
             toggleBtn.innerHTML = "❱";
-            toggleBtn.addEventListener("click", function(event) {
+            toggleBtn.addEventListener("click", function (event) {
                 // event.stopPropagation();
                 const expanded = li.classList.toggle("expanded");
                 toggleBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
@@ -608,7 +608,7 @@
             items.forEach(item => {
                 const sublist = item.querySelector("ol.section");
                 const toggle = item.querySelector(".chapter-fold-toggle");
-                
+
                 if (sublist && toggle) {
                     // 这个项有子列表
                     item.classList.add("has-children");
